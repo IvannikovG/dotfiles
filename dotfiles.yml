@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars:
+    curdir: "{{ plybook_dir }}"
+    link: "{{ curdir }}/link"
+    copy: "{{ curdir }}/copy"
+    source: "{{ curdir }}/source"
+  tasks:
+    - name: Copy bashrc file to ~ dir, with setted DOTFILES variable to curent dir.
+      template:
+        src: "{{ copy }}/bashrc"
+        dest: ~/.bashrc_test
+        backup: yes
+
+
