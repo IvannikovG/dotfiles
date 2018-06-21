@@ -1,0 +1,3 @@
+# Shift-[Up][Down] for history search
+"\e[1;2A" history-search-backward
+"\e[1;2B" history-search-forward

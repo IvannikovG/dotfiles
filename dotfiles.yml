@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    curdir: "{{ plybook_dir }}"
+    curdir: "{{ playbook_dir }}"
     link: "{{ curdir }}/link"
     copy: "{{ curdir }}/copy"
     source: "{{ curdir }}/source"
@@ -9,7 +9,13 @@
     - name: Copy bashrc file to ~ dir, with setted DOTFILES variable to curent dir.
       template:
         src: "{{ copy }}/bashrc"
-        dest: ~/.bashrc_test
+        dest: ~/.bashrc
         backup: yes
 
-
+    - name: Link files from link directory to ~.
+      file:
+        src: "{{ item }}"
+        dest: "~/.{{ item | basename }}"
+        state: link
+      with_fileglob:
+        - "{{ link }}/[!.]*"

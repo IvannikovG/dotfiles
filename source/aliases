@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# ls color and with classfication
+if [[  `uname` == 'Darwin' ]]; then
+  alias ls='ls -F -G'
+else
+  alias ls='ls -F --color=auto'
+fi
+alias ll='ls -AlFh'
+
+# grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias ..="cd .."
+
+alias :q="exit"
+
+alias g="git"
+alias gs="git status"
