@@ -77,8 +77,8 @@ fi;
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Set VI mode, and make C-l to clear screen.
-set -o vi
-bind -m vi-insert "\C-l":clear-screen
+# set -o vi
+# bind -m vi-insert "\C-l":clear-screen
 
 # Add fazzy search on C-f if available
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
