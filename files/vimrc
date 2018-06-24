@@ -200,8 +200,11 @@ set scrolloff=3
 " colorscheme jellybeans
 syntax enable
 set background=dark
+" Not use custom colors if run not on MacOs
+if !has('macunix')
+      let g:solarized_termcolors=256
+endif
 colorscheme solarized
-
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
