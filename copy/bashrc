@@ -1,4 +1,4 @@
-# vim: filetype=sh
+#!/bin/bash
 # Script executed by interactive non-login shels.
 
 # DOTFILES variable consist path to dotfile repo directory. It's should be setted with ansible.

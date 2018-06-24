@@ -31,6 +31,7 @@
         global_command: true
         command: require
       ignore_errors: true
+      become: yes
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
@@ -43,6 +44,7 @@
         extra_args: "--user"
         name: '{{ item }}'
         state: latest
+      become: yes
       with_items:
         - neovim
         - pylint

@@ -1,4 +1,4 @@
-# vim: filetype=sh
+#!/bin/bash
 #Login shell, is executed on login. But executed for each terminal window by Mac Os Terminal app.
 
 if [ -f ~/.bashrc ]; then
