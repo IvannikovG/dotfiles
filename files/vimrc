@@ -35,7 +35,7 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-fugitive'
@@ -126,6 +126,7 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
 
+
 call plug#end()
 " filetype plugin indent on
 
@@ -196,7 +197,10 @@ set cmdheight=2
 " set t_Co=256
 set scrolloff=3
 
-colorscheme jellybeans
+" colorscheme jellybeans
+syntax enable
+set background=dark
+colorscheme solarized
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
