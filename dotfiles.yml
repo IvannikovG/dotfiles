@@ -6,13 +6,13 @@
     copy: "{{ curdir }}/copy"
     source: "{{ curdir }}/source"
   tasks:
-    - name: Copy bashrc file to ~ dir, with setted DOTFILES variable to curent dir.
+    - name: Copy bashrc file to ~ dir, with setted DOTFILES variable to curent dir
       template:
         src: "{{ copy }}/bashrc"
         dest: ~/.bashrc
         backup: yes
 
-    - name: Link files from link directory to ~.
+    - name: Link files from link directory to ~
       file:
         src: "{{ item }}"
         dest: "~/.{{ item | basename }}"

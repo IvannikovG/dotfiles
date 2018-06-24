@@ -6,16 +6,25 @@ if [[  `uname` == 'Darwin' ]]; then
 else
   alias ls='ls -F --color=auto'
 fi
-alias ll='ls -AlFh'
+alias la='ls -AlFh'
 
-# grep
+
+# Grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias ..="cd .."
 
+# Git
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+
+
+# Other
+alias ..="cd .."
 alias :q="exit"
 
-alias g="git"
-alias gs="git status"
