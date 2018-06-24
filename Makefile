@@ -1,9 +1,9 @@
 dotfiles:
 	ansible-playbook dotfiles.yml -i local -v
-
-dotfilesp3:
-	ansible-playbook dotfiles.yml -i localp3 -v
-
+nvim:
+	ansible-playbook install.yml -i local -v -K
+nvim:
+	ansible-playbook nvim.yml -i local --skip-tags php -v
 ansible_install_ubuntu:
 	sudo apt-get install software-properties-common
 	sudo apt-add-repository ppa:ansible/ansible
