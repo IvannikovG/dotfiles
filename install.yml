@@ -36,6 +36,8 @@
         - "deb https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release }} main"
         - "deb-src https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release }} main"
         - "ppa:neovim-ppa/stable"
+        - "ppa:plt/racket"
+        - "ppa:jonathonf/rustlang"
       become: yes
       when: ansible_distribution == 'Ubuntu'
 
@@ -63,6 +65,8 @@
         - python3-dev
         - python3-setuptools
         - flex
+        - racket
+        - rustup
       when: ansible_distribution == 'Ubuntu'
 
 
