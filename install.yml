@@ -77,5 +77,6 @@
       with_items:
         - the_silver_searcher
         - bash-completion
+        - rast
       when: ansible_os_family == 'Darwin'
 
