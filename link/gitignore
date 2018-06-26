@@ -39,3 +39,9 @@ Thumbs.db
 
 *.lock
 package-lock.json
+
+
+# Ansible files #
+######################
+*retry
+
