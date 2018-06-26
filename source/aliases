@@ -30,6 +30,6 @@ alias gp='git push'
 alias ..="cd .."
 alias :q="exit"
 
-alias tt="tmux attach"
+alias ta="tmux attach"
 alias tn="tmux new -s"
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
