@@ -261,8 +261,17 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
-
-:set spell spelllang=en_us
+" Spell-checking
+set spell spelllang=en_us
+" Spell-checking higlighting settings
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi clear SpellRare
+hi SpellRare cterm=underline
+hi clear SpellCap
+hi SpellCap cterm=underline
+hi clear SpellLocal
+hi SpellLocal cterm=underline
 " let g:grammarous#use_vim_spelllang = 0
 " let g:grammarous#enable_spell_check = 1
 map <leader>cr :GjammarousCheck --lang=ru --preview<CR>
