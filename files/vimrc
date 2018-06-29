@@ -261,8 +261,13 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
-map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
+
+:set spell spelllang=en_us
+" let g:grammarous#use_vim_spelllang = 0
+" let g:grammarous#enable_spell_check = 1
+map <leader>cr :GjammarousCheck --lang=ru --preview<CR>
 map <leader>ce :GrammarousCheck --lang=en --preview<CR>
+map <leader>cd :GrammarousReset<CR>
 
 """ Plugin Settings
 
