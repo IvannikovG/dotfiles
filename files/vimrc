@@ -177,6 +177,7 @@ set ttyfast
 set shortmess=atI
 
 set cursorline
+set cursorcolumn
 set hidden
 set nofoldenable
 set wrap
