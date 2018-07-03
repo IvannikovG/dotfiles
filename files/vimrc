@@ -2,6 +2,7 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
 Plug 'lxhillwind/leader-clipboard'
@@ -149,6 +150,8 @@ call plug#end()
 
 let mapleader = "\<Space>"
 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 " https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
 " Enable hotkeys for Russian layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -174,6 +177,7 @@ set ttyfast
 set shortmess=atI
 
 set cursorline
+set cursorcolumn
 set hidden
 set nofoldenable
 set wrap
