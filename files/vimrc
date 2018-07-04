@@ -44,11 +44,17 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
+Plug 'joshdick/onedark.vim'
+
+
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Plug 'jeetsukumaran/vim-buffergator'
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-projectionist'
@@ -152,9 +158,10 @@ let mapleader = "\<Space>"
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
+" nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 " https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
 " Enable hotkeys for Russian layout
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " set visualbell
 
@@ -206,21 +213,20 @@ set softtabstop=2
 set shiftwidth=2
 
 set splitbelow
-" set background=dark
 set cmdheight=2
 " set t_Co=256
 set scrolloff=3
 
-colorscheme jellybeans
 
-" solorized colorscheme settins
-" syntax enable
+syntax enable
 " set background=dark
-" " Not use custom colors if run not on MacOs
-" if !has('macunix')
-"       let g:solarized_termcolors=256
-" endif
-" colorscheme solarized
+if has('macunix')
+  let g:onedark_termcolors=16
+  " let g:airline_powerline_fonts = 1
+else
+  " colorscheme jellybeans
+endif
+colorscheme onedark
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
@@ -349,7 +355,7 @@ nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
 
-let NERDTreeIgnore = ['\.pyc$', '\.retry$']
+let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
 
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -368,7 +374,7 @@ let g:bufExplorerShowRelativePath=1
 let g:deoplete#enable_at_startup = 1
 
 let g:airline#extensions#ale#enabled = 1
-
+let g:airline_theme='onedark'
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
