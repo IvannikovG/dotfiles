@@ -213,7 +213,7 @@ set softtabstop=2
 set shiftwidth=2
 
 set splitbelow
-set cmdheight=2
+set cmdheight=1
 " set t_Co=256
 set scrolloff=3
 
@@ -254,7 +254,7 @@ map <C-h> <C-w><Left>
 " nnoremap P P=`]<C-o>
 
 " Edit .vimrc
-map <leader>vl :vsp $MYVIMRC<CR>
+map <leader>vl :edit $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
 """ Plugins Keymaps
