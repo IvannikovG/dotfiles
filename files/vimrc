@@ -220,12 +220,12 @@ set scrolloff=3
 
 syntax enable
 " set background=dark
-if has('macunix')
-  let g:onedark_termcolors=16
-  " let g:airline_powerline_fonts = 1
-else
-  " colorscheme jellybeans
-endif
+" if has('macunix')
+"   " let g:airline_powerline_fonts = 1
+" else
+"   " colorscheme jellybeans
+" endif
+let g:onedark_termcolors=16
 colorscheme onedark
 
 " ================ Persistent Undo ==================
