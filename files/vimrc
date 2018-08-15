@@ -217,6 +217,9 @@ set cmdheight=1
 " set t_Co=256
 set scrolloff=3
 
+" Breaking long line with the same indentation.
+set breakindent
+
 
 syntax enable
 " set background=dark
