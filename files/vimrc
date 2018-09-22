@@ -153,6 +153,7 @@ call plug#end()
 "   autocmd FileType textile call lexical#init()
 "   autocmd FileType text call lexical#init({ 'spell': 0 })
 " augroup END
+" END
 
 let mapleader = "\<Space>"
 
@@ -176,6 +177,7 @@ endif
 "     set clipboard+=unnamedplus
 "   endif
 " endif
+
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw

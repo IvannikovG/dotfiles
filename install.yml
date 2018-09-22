@@ -37,8 +37,8 @@
         - "deb-src https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release }} main"
         - "ppa:neovim-ppa/stable"
         - "ppa:plt/racket"
-        - "ppa:jonathonf/rustlang"
-        - "ppa:webupd8team/java"
+          #- "ppa:jonathonf/rustlang"
+          #- "ppa:webupd8team/java"
       become: yes
 
     - name: Accept Java 8 License
@@ -59,8 +59,8 @@
         - openssl
         - libssl-dev
         - ack-grep
-        - clang-format-3.6
-        - clang-3.6
+          #- clang-format-3.6
+          #- clang-3.6
         - llvm
         - exuberant-ctags
         - curl
@@ -71,9 +71,9 @@
         - python3-setuptools
         - flex
         - racket
-        - rustup
+          #- rustup
         - silversearcher-ag
-        - oracle-java8-installer
+          #- oracle-java8-installer
       when: ansible_distribution == 'Ubuntu'
 
 
