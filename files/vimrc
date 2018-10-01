@@ -162,7 +162,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 " https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
 " Enable hotkeys for Russian layout
-" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " set visualbell
 
