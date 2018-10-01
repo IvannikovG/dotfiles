@@ -2,13 +2,22 @@
 # Script executed by interactive non-login shels.
 
 # DOTFILES variable consist path to dotfile repo directory. It's should be setted with ansible.
-export DOTFILES={{ curdir }}
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in $DOTFILES/source/{bash_prompt,exports,aliases,functions,options}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-clear
+
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+	export TERM='gnome-256color';
+elif infocmp xterm-256color >/dev/null 2>&1; then
+	export TERM='screen-256color';
+fi;
+
+if shopt -q login_shell; then
+  export DOTFILES={{ curdir }}
+  for file in $DOTFILES/source/{bash_prompt,exports,aliases,functions,options}; do
+          [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+  unset file;
+  clear
+fi
