@@ -23,7 +23,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
+" Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
 Plug 'jiangmiao/auto-pairs'
@@ -279,12 +279,11 @@ map <leader>cd :GrammarousReset<CR>
 """ Plugin Settings
 
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 0
 
 let g:LanguageClient_serverCommands = {
-      \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-      \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-      \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-      \ 'ruby': ['language_server-ruby'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'javascript.jsx': ['javascript-typescript-stdio'],
       \ }
 
 let g:vim_markdown_frontmatter = 1
