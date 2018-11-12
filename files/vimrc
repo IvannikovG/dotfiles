@@ -345,7 +345,7 @@ nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
 
-let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\', 'node_modules/*']
+let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
 
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -384,6 +384,9 @@ endif
 augroup common
   autocmd BufEnter * EnableStripWhitespaceOnSave
 augroup END
+
+" Set comments for racket and schema:
+autocmd FileType racket,scheme setlocal commentstring=;;\ %s
 
 augroup filetypedetect
   " autocmd!
