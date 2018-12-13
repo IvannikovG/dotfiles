@@ -13,8 +13,8 @@
         state: latest
       with_items:
         - node
-        - php71
-        - composer
+        # - php71
+        # - composer
       when: ansible_os_family == 'Darwin'
 
     - name: Ensure apt-transport-https is installed.
@@ -40,6 +40,7 @@
           #- "ppa:jonathonf/rustlang"
           #- "ppa:webupd8team/java"
       become: yes
+      when: ansible_os_family == 'Ubuntu'
 
     - name: Accept Java 8 License
       become: yes
