@@ -19,5 +19,5 @@ if shopt -q login_shell; then
           [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
   unset file;
-  clear
+  # clear
 fi

@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
 
 Plug 'junegunn/vim-peekaboo'
 
@@ -13,7 +14,7 @@ Plug 'tpope/vim-sensible'
 " Plug 'ervandew/supertab'
 Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'ConradIrwin/vim-bracketed-paste'
+" Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -223,7 +224,7 @@ endif
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
-vnoremap k gk<Paste>
+vnoremap k gk
 
 " " Map ctrl-movement keys to window switching
 " map <C-k> <C-w><Up>
@@ -234,6 +235,9 @@ vnoremap k gk<Paste>
 " Auto indent pasted text
 " nnoremap p p=`]<C-o>
 " nnoremap P P=`]<C-o>
+" Insert blank line without entering insert mode
+nmap <A-CR> O<Esc>
+nmap <CR> o<Esc>
 
 " Edit .vimrc
 map <leader>vl :edit $MYVIMRC<CR>
@@ -335,7 +339,7 @@ nmap <F8> :TagbarToggle<CR>
 " imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
 " format the entire file
-" nnoremap ff :normal! gg=G``<CR>
+nnoremap ff :normal! gg=G``<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
@@ -426,6 +430,7 @@ hi clear SignColumn
 
 " always show signcolumns
 set signcolumn=yes
+set pastetoggle=<F3>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

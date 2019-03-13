@@ -6,6 +6,8 @@
 
 export EDITOR="nvim"
 
+export MOSH_ESCAPE_KEY="~"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Ignore commands that start with spaces and duplicates.
