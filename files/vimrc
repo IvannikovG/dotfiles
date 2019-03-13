@@ -10,7 +10,7 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sensible'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -246,8 +246,8 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :BufExplorer<CR>
 
-inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
+" inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
+" inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
@@ -433,7 +433,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -445,7 +445,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
