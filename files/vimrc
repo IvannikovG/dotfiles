@@ -77,13 +77,13 @@ Plug 'eagletmt/ghcmod-vim'
 
 Plug 'elzr/vim-json'
 " Plug 'vim-scripts/JavaScript-Indent'
-" Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 " Plug 'pangloss/vim-javascript'
 Plug 'mitermayer/vim-prettier', {
       \ 'do': 'npm install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 " Plug 'maxmellon/vim-jsx-pretty'
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+" Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
@@ -92,6 +92,7 @@ Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
 
 Plug 'Valloric/MatchTagAlways'
+Plug 'alvan/vim-closetag'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -284,7 +285,13 @@ function! g:grammarous#hooks.on_reset(errs) abort
     nunmap <buffer><C-p>
 endfunction
 
-""" Plugin Settings
+"""" Plugin Settings
+
+"" vim-closetag:
+let g:closetag_filenames = '*.html,*.erb,*.jsx,*.js'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+
 
 " let g:LanguageClient_autoStart = 1
 " let g:LanguageClient_diagnosticsEnable = 0
@@ -317,7 +324,7 @@ endfunction
 " let g:easytags_async = 1
 
 " Automatically removing all trailing whitespace
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " let g:javascript_plugin_flow = 1
 
