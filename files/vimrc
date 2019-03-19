@@ -21,6 +21,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'rhysd/vim-grammarous'
+Plug 'vim-scripts/restore_view.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -48,9 +49,6 @@ Plug 'junegunn/fzf.vim'
 
 
 Plug 'altercation/vim-colors-solarized'
-" Plug 'nanotech/jellybeans.vim'
-" Plug 'joshdick/onedark.vim'
-
 
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-fugitive'
@@ -71,25 +69,19 @@ Plug 'tpope/vim-ragtag'
 Plug 'Quramy/tsuquyomi'
 
 
-" Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/ghcmod-vim'
-" Plug 'neovimhaskell/haskell-vim'
 
 Plug 'elzr/vim-json'
-" Plug 'vim-scripts/JavaScript-Indent'
 Plug 'mxw/vim-jsx'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 Plug 'mitermayer/vim-prettier', {
       \ 'do': 'npm install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
 
 Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-easytags'
 
 Plug 'Valloric/MatchTagAlways'
 Plug 'alvan/vim-closetag'
@@ -97,7 +89,6 @@ Plug 'alvan/vim-closetag'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
-" Plug 'JamshedVesuna/vim-markdown-preview'
 
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-git'
@@ -119,30 +110,20 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
 
-
 call plug#end()
-" filetype plugin indent on
 
-" augroup lexical
-"   autocmd!
-"   autocmd FileType markdown,mkd call lexical#init()
-"   autocmd FileType textile call lexical#init()
-"   autocmd FileType text call lexical#init({ 'spell': 0 })
-" augroup END
-" END
 
 let mapleader = "\<Space>"
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-" nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+
 " Enable hotkeys for Russian layout
 " https://habr.com/post/98393/
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
-
-" set visualbell
+inoremap <c-l> <c-^>
 
 if has('mouse')
   set mouse=a
@@ -175,12 +156,7 @@ set noswapfile
 set showcmd       " display incomplete commands
 set autowrite     " Automatically :write before running commands
 
-" Use one space, not two, after punctuation.
-" set nojoinspaces
-
-" set softtabstop=4
 set expandtab
-" set noexpandtab
 set softtabstop=2
 set shiftwidth=2
 
@@ -192,16 +168,12 @@ set scrolloff=3
 " Breaking long line with the same indentation.
 set breakindent
 
+set foldmethod=syntax
+let javaScript_fold=1
+" let g:xml_syntax_folding = 1 - allow to fold jsx but has a problems with highlighting
+set foldlevelstart=99
 
-syntax enable
-" set background=dark
-" if has('macunix')
-"   " let g:airline_powerline_fonts = 1
-" else
-"   " colorscheme jellybeans
-" endif
-" let g:onedark_termcolors=16
-" colorscheme onedark
+
 syntax enable
 set background=dark
 let g:solarized_termtrans = 1
@@ -220,25 +192,11 @@ endif
 """ Basics Keymaps
 
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
-" nmap j gj
-" nmap k gk
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" " Map ctrl-movement keys to window switching
-" map <C-k> <C-w><Up>
-" map <C-j> <C-w><Down>
-" map <C-l> <C-w><Right>
-" map <C-h> <C-w><Left>
-
-" Auto indent pasted text
-" nnoremap p p=`]<C-o>
-" nnoremap P P=`]<C-o>
-" Insert blank line without entering insert mode
-nmap <A-CR> O<Esc>
-nmap <CR> o<Esc>
 
 " Edit .vimrc
 map <leader>vl :edit $MYVIMRC<CR>
@@ -250,9 +208,6 @@ nmap <C-m> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :BufExplorer<CR>
-
-" inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
-" inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
@@ -270,8 +225,6 @@ hi SpellCap cterm=underline
 hi clear SpellLocal
 hi SpellLocal cterm=underline
 
-" let g:grammarous#use_vim_spelllang = 0
-" let g:grammarous#enable_spell_check = 1
 map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
 map <leader>ce :GrammarousCheck --lang=en --preview<CR>
 map <leader>cd :GrammarousReset<CR>
@@ -292,61 +245,18 @@ let g:closetag_filenames = '*.html,*.erb,*.jsx,*.js'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 
 
-
-" let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_diagnosticsEnable = 0
-
-" let g:LanguageClient_serverCommands = {
-"       \ 'javascript': ['javascript-typescript-stdio'],
-"       \ 'javascript.jsx': ['javascript-typescript-stdio'],
-"       \ }
-
-" let g:vim_markdown_frontmatter = 1
-" let g:vim_markdown_toc_autofit = 1
-" let g:lexical#spelllang = ['en_us', 'ru_ru']
-
-
-" let g:ale_completion_enabled = 1
-" let g:ale_linters = {
-"       \   'javascript': ['flow','eslint'],
-"       \}
-" let g:ale_fixers = {
-"       \'javascript': ['eslint'],
-"       \}
-
-" nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
-" nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
-" nnoremap <leader>lf :call LanguageClient_textDocument_documentSymbol()<CR>
-
-" let g:acp_enableAtStartup = 0
-
-" let g:easytags_async = 1
-
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-" let g:javascript_plugin_flow = 1
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
 
 let g:vim_markdown_folding_disabled = 1
 
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-
 
 nmap <F8> :TagbarToggle<CR>
 
-" " Toggle paste mode
-" nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
-" imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
-
-" format the entire file
-nnoremap ff :normal! gg=G``<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
@@ -354,7 +264,6 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-nnoremap <Leader>o :GFiles .<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
@@ -362,21 +271,17 @@ nnoremap <leader>fa :Ag<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
 
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nmap <silent> // :nohlsearch<CR>
-noremap ,hl :set hlsearch! hlsearch?<CR>
 
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
 cmap w!! %!sudo tee > /dev/null %
 
-" nnoremap <silent> <bs> <C-w><Left>
 
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
 
-" let g:deoplete#enable_at_startup = 1
 
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='solarized'
@@ -386,11 +291,6 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-" Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
@@ -403,40 +303,18 @@ augroup END
 " Set comments for racket and schema:
 autocmd FileType racket,scheme setlocal commentstring=;;\ %s
 
-augroup filetypedetect
-  " autocmd!
-  " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
-  " au BufEnter *.json setl ft=javascript
-  " au BufEnter *.coffee setl sw=2 expandtab
-  " au BufEnter *.py setl ts=4 sw=4 sts=4
-  autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
-  autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
-  autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
-  " au BufEnter *.js setl ts=2 sw=2 sts=2
-  " au BufEnter *.html setl ts=4 sw=4 sts=4
-  " au BufEnter *.tex setl wrap tw=79 fo=tcqor
-  " au BufEnter *.[ch] setl cindent
-  " au BufEnter *.[ch]pp setl cindent
-  " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
-  " au BufEnter *.es6 setf javascript
-augroup END
-
-
-
-
 
 " if hidden not set, TextEdit might fail.
 set hidden
 
-" Better display for messages
-set cmdheight=2
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
+set shortmess+=c
 hi clear SignColumn
 
 " always show signcolumns
-set signcolumn=yes
+" set signcolumn=yes
 set pastetoggle=<F3>
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -507,35 +385,12 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+" if you want to disable auto detect, comment out those two lines
+let g:airline#extensions#disable_rtp_load = 1
+let g:airline_extensions = ['branch',  'coc']
 
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-
-
-" Shortcuts for denite interface
-" Show extension list
-nnoremap <silent> <space>e  :<C-u>Denite coc-extension<cr>
-" Show symbols of current buffer
-nnoremap <silent> <space>o  :<C-u>Denite coc-symbols<cr>
-" Search symbols of current workspace
-nnoremap <silent> <space>t  :<C-u>Denite coc-workspace<cr>
-" Show diagnostics of current workspace
-nnoremap <silent> <space>a  :<C-u>Denite coc-diagnostic<cr>
-" Show available commands
-nnoremap <silent> <space>c  :<C-u>Denite coc-command<cr>
-" Show available services
-nnoremap <silent> <space>s  :<C-u>Denite coc-service<cr>
-" Show links of current buffer
-nnoremap <silent> <space>l  :<C-u>Denite coc-link<cr>
