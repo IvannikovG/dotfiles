@@ -16,10 +16,10 @@ Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 Plug 'rhysd/vim-grammarous'
 Plug 'vim-scripts/restore_view.vim'
 
@@ -161,6 +161,7 @@ set autowrite     " Automatically :write before running commands
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+set tabstop=4
 
 set splitbelow
 set cmdheight=1
@@ -215,6 +216,10 @@ nnoremap <leader>b :BufExplorer<CR>
 nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
 " Spell-checking
 set spell spelllang=ru_yo,en_us
 " Spell-checking higlighting settings
@@ -267,22 +272,13 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <Leader>w :w<CR>
+
+" FZF :Files use ag and ignore files from gitignore:
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
 
-" let g:NERDTreeIndicatorMapCustom = {
-"     \ "Modified"  : "✹",
-"     \ "Staged"    : "✚",
-"     \ "Untracked" : "✭",
-"     \ "Renamed"   : "➜",
-"     \ "Unmerged"  : "═",
-"     \ "Deleted"   : "✖",
-"     \ "Dirty"     : "✗",
-"     \ "Clean"     : "✔︎",
-"     \ 'Ignored'   : '☒',
-"     \ "Unknown"   : "?"
-"     \ }
 let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
@@ -300,8 +296,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
 
 
-let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='solarized'
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -405,9 +399,18 @@ command! -nargs=0 Format :call CocAction('format')
 " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " if you want to disable auto detect, comment out those two lines
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline_extensions = ['branch',  'coc']
+" let g:airline#extensions#disable_rtp_load = 1
+" let g:airline_extensions = ['branch', 'coc']
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='solarized'
+let g:airline#extensions#keymap#enabled = 0
+let g:airline_detect_spell=0
+let g:airline_detect_spelllang=0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+" let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
