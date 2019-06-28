@@ -6,6 +6,7 @@
 "\e[B": history-search-forward
 
 set completion-ignore-case on
+set editing-mode vi
 
 # set editing-mode vi
 set show-mode-in-prompt on

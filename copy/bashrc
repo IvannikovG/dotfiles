@@ -15,7 +15,7 @@ fi;
 
 if shopt -q login_shell; then
   export DOTFILES={{ curdir }}
-  for file in $DOTFILES/source/{bash_prompt,exports,aliases,functions,options}; do
+  for file in $DOTFILES/source/{bash_prompt,exports,aliases,functions,options,path}; do
           [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
   unset file;
