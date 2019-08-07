@@ -100,10 +100,11 @@ else
 fi;
 
 # Set the terminal title and prompt.
+PROMPT_COMMAND="echo" # add newline after each command
 PS1="\[\033]0;\W\007\]"; # working directory base name
-PS1+="\[${bold}\]\n"; # newline
-# PS1+="\[${userStyle}\]\u"; # username
-# PS1+="\[${white}\] at ";
+# PS1+="\[${bold}\]\n"; # newline
+# PS1+="\[${userStyle}\]\u "; # username
+PS1+="\[${white}\]at ";
 
 if [[ "${USER}" == "root" ]]; then
   PS1+="\[${userStyle}\]\u"; # username

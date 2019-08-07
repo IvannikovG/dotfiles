@@ -8,7 +8,7 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 fi;
 
 if shopt -q login_shell; then
-  export DOTFILES=.bash_source
+  export DOTFILES=~/.bash_source
   for file in $DOTFILES/{bash_prompt,exports,aliases,functions,options,path}; do
           [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
