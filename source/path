@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [[  `uname` == 'Linux' ]]; then
-  export PATH=$(brew --prefix)/.linuxbrew/bin:$PATH
+  export PATH=$(brew --prefix)/bin:$PATH
+  echo 'lii'
 fi
 
 export NVM_DIR="$HOME/.nvm"

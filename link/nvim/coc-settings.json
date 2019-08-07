@@ -1,4 +1,9 @@
 {
   "javascript.validate.enable": false,
-  "tsserver.implicitProjectConfig.experimentalDecorators": true
+  "tsserver.implicitProjectConfig.experimentalDecorators": true,
+  "diagnostic.signOffset": 9999999,
+
+  "eslint.codeAction.showDocumentation": {
+    "enable": false
+  }
 }
