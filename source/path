@@ -2,7 +2,9 @@
 
 if [[  `uname` == 'Linux' ]]; then
   export PATH=$(brew --prefix)/bin:$PATH
-  echo 'lii'
+  export MANPATH=$(brew --prefix)/man:$MANPATH
+  export PKG_CONFIG_PATH=$(brew --prefix)/lib64/pkgconfig:$LINUXBREWHOME/lib/pkgconfig:$PKG_CONFIG_PATH
+  export LD_LIBRARY_PATH=$(brew --prefix)/lib64:$(brew --prefix)/lib:$LD_LIBRARY_PATH
 fi
 
 export NVM_DIR="$HOME/.nvm"
