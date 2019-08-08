@@ -1,5 +1,5 @@
 set nocompatible
-" set termguicolors
+set termguicolors
 
 call plug#begin('~/.vim/plugged')
 
@@ -165,16 +165,20 @@ set foldlevelstart=99
 
 
 syntax enable
-" set background=dark
-" let g:solarized_termtrans = 1
+" set background=light
+set background=dark
+" let g:solarized_extra_hi_groups=1
+let g:solarized_old_cursor_style=1
+let g:solarized_statusline="flat"
+"" let g:solarized_termtrans = 1
 " let g:solarized_ermcolors= 16
-colorscheme solarized8
+colorscheme solarized8_high
 
-hi SignColumn ctermbg=black
-" hi EndOfBuffer ctermfg=DarkBlue ctermbg=#002b36
-hi CocErrorSign  ctermfg=red ctermbg=black
-hi CocWarningSign  ctermfg=brown ctermbg=black
-hi CocInfoSign  ctermfg=red ctermbg=black
+hi SignColumn guibg=#073642
+hi EndOfBuffer guifg=#002b36
+hi CocErrorSign  guifg=#dc322f guibg=#073642
+hi CocWarningSign guifg=#b589k0 guibg=#073642
+hi CocInfoSign guifg=#268bd2 guibg=#073642
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
