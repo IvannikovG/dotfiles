@@ -1,6 +1,12 @@
 set nocompatible
 set termguicolors
 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
@@ -38,7 +44,7 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'peitalin/vim-jsx-typescript'
 
 " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 
 " A universal set of defaults that (hopefully) everyone can agree on.
 Plug 'tpope/vim-sensible'
@@ -46,10 +52,9 @@ Plug 'tpope/vim-sensible'
 " All trailing whitespace characters (see Supported Whitespace Characters below) to be highlighted
 Plug 'ntpeters/vim-better-whitespace'
 
+" Whenever you are in the insert mode and paste into your terminal emulator using command+v, shift+insert, ctrl+shift+v or middle-click, vim will automatically :set paste for you.
 Plug 'ConradIrwin/vim-bracketed-paste'
 
-" Whenever you are in the insert mode and paste into your terminal emulator using command+v, shift+insert, ctrl+shift+v or middle-click, vim will automatically :set paste for you.
-Plug 'hashivim/vim-terraform'
 
 " Automatically restore one file's cursor position and folding information after restart vim
 Plug 'vim-scripts/restore_view.vim'
@@ -115,10 +120,16 @@ set iminsert=0
 set imsearch=0
 inoremap <c-l> <c-^>
 
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 if has('mouse')
   set mouse=a
 endif
-
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -132,7 +143,6 @@ set hidden
 set nofoldenable
 set wrap
 set linebreak
-set number
 set hlsearch
 set ignorecase
 set smartcase
@@ -163,17 +173,18 @@ let javaScript_fold=1
 " let g:xml_syntax_folding = 1 - allow to fold jsx but has a problems with highlighting
 set foldlevelstart=99
 
-
 syntax enable
 " set background=light
 set background=dark
+" ====solorized_settings===
 " let g:solarized_extra_hi_groups=1
+" let g:solarized_termtrans = 1
+" let g:solarized_ermcolors= 16
+" ========================
+
 let g:solarized_old_cursor_style=1
 let g:solarized_statusline="flat"
-"" let g:solarized_termtrans = 1
-" let g:solarized_ermcolors= 16
 colorscheme solarized8_high
-
 hi SignColumn guibg=#073642
 hi EndOfBuffer guifg=#002b36
 hi CocErrorSign  guifg=#dc322f guibg=#073642
@@ -192,10 +203,10 @@ endif
 """ Basics Keymaps
 
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+vnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+vnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 
 " Edit .vimrc
@@ -390,9 +401,9 @@ nmap <leader>ca  <Plug>(coc-codeaction)
 nmap <leader>cf  <Plug>(coc-fix-current)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
