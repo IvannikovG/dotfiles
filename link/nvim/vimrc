@@ -190,12 +190,22 @@ colorscheme flattened_dark
 " colorscheme flattened_light
 set fillchars+=vert:│
 hi VertSplit ctermfg=NONE ctermbg=NONE guibg=NONE
-hi  Normal ctermfg=12  ctermbg=NONE  guifg=#839496  guibg=#002b36  gui=NONE
-hi  SignColumn cterm=NONE  ctermfg=3  ctermbg=0  guifg=#839496  guibg=NONE  gui=NONE
-hi  CursorLine cterm=NONE  ctermbg=0  guibg=#073642  guisp=#93a1a1  gui=NONE
-hi  CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  gui=NONE
-hi  EndOfBuffer ctermfg=NONE ctermbg=NONE
-hi  CursorColumn cterm=NONE  ctermbg=0  guibg=#073642  gui=NONE
+hi Normal ctermfg=12  ctermbg=NONE  guifg=#839496  guibg=#002b36  gui=NONE
+hi SignColumn cterm=NONE  ctermfg=3  ctermbg=0  guifg=#839496  guibg=NONE  gui=NONE
+
+hi CursorLine cterm=NONE  ctermbg=0  guibg=#073642  guisp=#93a1a1  gui=NONE
+hi CursorColumn cterm=NONE  ctermbg=0  guibg=#073642  gui=NONE
+hi CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  gui=NONE
+
+hi EndOfBuffer ctermfg=NONE ctermbg=NONE
+
+hi CocInfoSign ctermfg=4 ctermbg=0
+hi CocWarningSign cterm=bold ctermfg=3 ctermbg=0
+hi CocWarningFloat ctermbg=0 ctermfg=3
+hi CocErrorSign ctermfg=1 ctermbg=0
+hi CocErrorFloat ctermbg=0 ctermfg=1
+" hi CocWarningVirtualText ctermfg=1 ctermbg=10
+hi CocFloating ctermbg=0 ctermfg=4
 " ========================
 "
 "

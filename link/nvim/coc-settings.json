@@ -6,5 +6,9 @@
   "eslint.codeAction.showDocumentation": {
     "enable": false
   },
-  "eslint.filetypes": [ "javascript", "javascriptreact"]
+  "eslint.filetypes": [ "javascript", "javascriptreact"],
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "i",
+  "diagnostic.errorSign": "e",
+  "diagnostic.checkCurrentLine": true
 }
