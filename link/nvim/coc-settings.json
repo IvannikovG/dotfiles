@@ -6,5 +6,5 @@
   "eslint.codeAction.showDocumentation": {
     "enable": false
   },
-  "eslint.filetypes": ["typescript", "javascript", "javascriptreact"]
+  "eslint.filetypes": [ "javascript", "javascriptreact"]
 }

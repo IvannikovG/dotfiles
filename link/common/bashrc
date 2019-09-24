@@ -15,3 +15,5 @@ if shopt -q login_shell; then
   unset file;
   # clear
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
