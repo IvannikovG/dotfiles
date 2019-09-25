@@ -1,11 +1,11 @@
 set nocompatible
 " set termguicolors
 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+"   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 
 call plug#begin('~/.vim/plugged')
 
@@ -93,6 +93,8 @@ Plug 'alvan/vim-closetag'
 
 " Use <Leader> to access system clipboard in Vim
 Plug 'lxhillwind/leader-clipboard'
+Plug 'tpope/vim-fugitive'
+
 
 " ColorSchemas
 " Plug 'lifepillar/vim-solarized8'
@@ -137,7 +139,6 @@ endif
 set lazyredraw
 set ttyfast
 
-set shortmess=atI
 
 set cursorline
 set cursorcolumn
@@ -175,7 +176,7 @@ let javaScript_fold=1
 " let g:xml_syntax_folding = 1 - allow to fold jsx but has a problems with highlighting
 set foldlevelstart=99
 
-syntax enable
+syntax on
 " set background=light
 set background=dark
 " ====solorized_common_settings===
@@ -200,9 +201,11 @@ hi CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  gui=NONE
 hi EndOfBuffer ctermfg=NONE ctermbg=NONE
 
 hi CocInfoSign ctermfg=4 ctermbg=0
-hi CocWarningSign cterm=bold ctermfg=3 ctermbg=0
+hi CocWarningSign ctermfg=3 ctermbg=0
+hi CocWarningHighlight cterm=underline ctermfg=3
 hi CocWarningFloat ctermbg=0 ctermfg=3
 hi CocErrorSign ctermfg=1 ctermbg=0
+hi CocErrorHighlight cterm=underline ctermfg=1
 hi CocErrorFloat ctermbg=0 ctermfg=1
 " hi CocWarningVirtualText ctermfg=1 ctermbg=10
 hi CocFloating ctermbg=0 ctermfg=4
@@ -357,7 +360,8 @@ set hidden
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
-set shortmess+=c
+" set shortmess+=c
+" set shortmess+=at
 
 
 " always show signcolumns

@@ -1,14 +1,18 @@
 {
   "javascript.validate.enable": false,
   "tsserver.implicitProjectConfig.experimentalDecorators": true,
-  "diagnostic.signOffset": 9999999,
 
   "eslint.codeAction.showDocumentation": {
     "enable": false
   },
   "eslint.filetypes": [ "javascript", "javascriptreact"],
+
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.enable": true,
   "diagnostic.warningSign": "!",
   "diagnostic.infoSign": "i",
   "diagnostic.errorSign": "e",
-  "diagnostic.checkCurrentLine": true
+  "diagnostic.checkCurrentLine": true,
+
+  "git.changeRemovedSign.text": "~_"
 }
