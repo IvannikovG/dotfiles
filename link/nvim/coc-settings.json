@@ -5,7 +5,7 @@
   "eslint.codeAction.showDocumentation": {
     "enable": false
   },
-  "eslint.filetypes": [ "javascript", "javascriptreact"],
+  "eslint.filetypes": [ "javascript", "javascriptreact", "typescript", "typescriptreact"],
 
   "diagnostic.signOffset": 9999999,
   "diagnostic.enable": true,
