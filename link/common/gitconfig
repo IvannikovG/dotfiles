@@ -34,6 +34,6 @@
 
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore
+	excludesFile = /home/mput/.gitign
 [push]
 	default = simple

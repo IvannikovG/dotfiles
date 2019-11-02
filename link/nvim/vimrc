@@ -31,10 +31,12 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-docker',
       \ 'coc-diagnostic',
+      \ 'coc-prettier',
       \]
 " Plug 'w0rp/ale'
+" Denite - Fuzzy finding, buffer management
+Plug 'Shougo/denite.nvim'
 
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
 
 " Syntax support:
@@ -49,6 +51,11 @@ Plug 'sheerun/vim-polyglot'
 
 " A universal set of defaults that (hopefully) everyone can agree on.
 Plug 'tpope/vim-sensible'
+
+"The vim-indent-object plugin adds yet another text object to Vim, this one
+"based on the indentation of the current cursor line. This new text object is
+"invoked by either i or I. Some examples:
+Plug 'michaeljsmith/vim-indent-object'
 
 " All trailing whitespace characters (see Supported Whitespace Characters below) to be highlighted
 Plug 'ntpeters/vim-better-whitespace'
@@ -102,17 +109,23 @@ Plug 'tpope/vim-fugitive'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'romainl/flattened'
 
-"Do i need this???
-Plug 'rhysd/vim-grammarous'
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'wellle/targets.vim'
+Plug 'wellle/targets.vim'
 " A Vim plugin which shows a git diff in the 'gutter' (sign column).
 " Plug 'airblade/vim-gitgutter'
+
+Plug 'rhysd/git-messenger.vim'
+
+Plug 'mbbill/undotree'
 
 call plug#end()
 
 
 let mapleader = "\<Space>"
+
+" let g:undotree_HighlightChangedWithSign = 0
+" let g:undotree_WindowLayout             = 4
+nnoremap <Leader>u :UndotreeToggle<CR>
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -210,6 +223,7 @@ hi CocErrorHighlight cterm=underline ctermfg=1
 hi CocErrorFloat ctermbg=0 ctermfg=1
 " hi CocWarningVirtualText ctermfg=1 ctermbg=10
 hi CocFloating ctermbg=0 ctermfg=4
+hi NormalFloat ctermbg=0 ctermfg=4
 " ========================
 "
 "
@@ -248,19 +262,14 @@ map <leader>vr :source $MYVIMRC<CR>
 
 """ Plugins Keymaps
 
-nmap <C-m> :NERDTreeFind<CR>
-nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+" nmap <C-m> :NERDTreeFind<CR>
+" nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+nmap <silent> <leader><leader> :CocCommand explorer
+      \ --toggle
+      \ --width=45
+      \ <CR>
 
 nnoremap <leader>b :BufExplorer<CR>
-
-" Move between linting errors
-" nnoremap ]r :ALENextWrap<CR>
-" nnoremap [r :ALEPreviousWrap<CR>
-
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \   'typescript': ['tsserver'],
-" \}
 
 " Spell-checking
 set spell spelllang=ru_yo,en_us
@@ -273,19 +282,6 @@ hi clear SpellCap
 hi SpellCap cterm=underline
 hi clear SpellLocal
 hi SpellLocal cterm=underline
-
-map <leader>gr :GrammarousCheck --lang=ru --preview<CR>
-map <leader>ge :GrammarousCheck --lang=en --preview<CR>
-map <leader>gd :GrammarousReset<CR>
-let g:grammarous#hooks = {}
-function! g:grammarous#hooks.on_check(errs) abort
-    nmap <buffer><C-n> <Plug>(grammarous-move-to-next-error)
-    nmap <buffer><C-p> <Plug>(grammarous-move-to-previous-error)
-endfunction
-function! g:grammarous#hooks.on_reset(errs) abort
-    nunmap <buffer><C-n>
-    nunmap <buffer><C-p>
-endfunction
 
 """" Plugin Settings
 
@@ -316,6 +312,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
+
 
 " =======NERDTree==========
 let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
@@ -392,6 +389,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -401,6 +399,9 @@ nmap <leader>cd <Plug>(coc-definition)
 nmap <leader>cy <Plug>(coc-type-definition)
 nmap <leader>ci <Plug>(coc-implementation)
 nmap <leader>cr <Plug>(coc-references)
+
+nmap <leader>cl :CocList --number-select<cr>
+nmap <leader>cL :CocListResume <cr>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -420,8 +421,8 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format)
 
 " Setup formatexpr specified filetype(s).
 augroup mygroup
@@ -436,7 +437,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ca  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>cf  <Plug>(coc-fix-current)
+" nmap <leader>cx  <Plug>(coc-fix-current)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 " nmap <silent> <TAB> <Plug>(coc-range-select)
@@ -464,4 +465,3 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 " let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-

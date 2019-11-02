@@ -5,7 +5,12 @@
   "eslint.codeAction.showDocumentation": {
     "enable": false
   },
-  "eslint.filetypes": [ "javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
 
   "diagnostic.signOffset": 9999999,
   "diagnostic.enable": true,
@@ -14,5 +19,16 @@
   "diagnostic.errorSign": "e",
   "diagnostic.checkCurrentLine": true,
 
-  "git.changeRemovedSign.text": "~_"
+  "git.changeRemovedSign.text": "~_",
+
+  "explorer.file.columns": [
+    "readonly",
+    "git",
+    "selection",
+    "clip",
+    "diagnosticError",
+    "indent",
+    "icon",
+    "filename"
+  ]
 }
