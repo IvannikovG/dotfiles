@@ -1,15 +1,9 @@
 set nocompatible
 " set termguicolors
 
-" if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-"   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
-
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'npm ci'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-html',
@@ -32,22 +26,16 @@ let g:coc_global_extensions = [
       \ 'coc-docker',
       \ 'coc-diagnostic',
       \ 'coc-prettier',
+      \ 'coc-explorer',
+      \ 'coc-pairs',
+      \ 'coc-stylelint',
       \]
-" Plug 'w0rp/ale'
-" Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim'
 
 Plug 'christoomey/vim-tmux-navigator'
 
 " Syntax support:
 Plug 'sheerun/vim-polyglot'
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-
-" Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers
-" Plug 'junegunn/vim-peekaboo'
+Plug 'suy/vim-context-commentstring'
 
 " A universal set of defaults that (hopefully) everyone can agree on.
 Plug 'tpope/vim-sensible'
@@ -67,14 +55,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 " Automatically restore one file's cursor position and folding information after restart vim
 Plug 'vim-scripts/restore_view.vim'
 
-" Insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -89,10 +71,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'mitermayer/vim-prettier', {
-      \ 'do': 'npm install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-
 " always highlights the enclosing html/xml tags
 Plug 'Valloric/MatchTagAlways'
 
@@ -102,17 +80,14 @@ Plug 'alvan/vim-closetag'
 " Use <Leader> to access system clipboard in Vim
 Plug 'lxhillwind/leader-clipboard'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 
 " ColorSchemas
-" Plug 'lifepillar/vim-solarized8'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'romainl/flattened'
 
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Vim plugin that provides additional text objects
 Plug 'wellle/targets.vim'
-" A Vim plugin which shows a git diff in the 'gutter' (sign column).
-" Plug 'airblade/vim-gitgutter'
 
 Plug 'rhysd/git-messenger.vim'
 
@@ -123,8 +98,6 @@ call plug#end()
 
 let mapleader = "\<Space>"
 
-" let g:undotree_HighlightChangedWithSign = 0
-" let g:undotree_WindowLayout             = 4
 nnoremap <Leader>u :UndotreeToggle<CR>
 
 " Disable tmux navigator when zooming the Vim pane
@@ -139,11 +112,6 @@ inoremap <c-l> <c-^>
 
 set number relativenumber
 set numberwidth=1
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
 
 if has('mouse')
   set mouse=a
@@ -187,23 +155,15 @@ set breakindent
 
 set foldmethod=syntax
 let javaScript_fold=1
-" let g:xml_syntax_folding = 1 - allow to fold jsx but has a problems with highlighting
 set foldlevelstart=99
-
 syntax on
-" set background=light
-set background=dark
-" ====solorized_common_settings===
-" let g:solarized_extra_hi_groups=1
-" let g:solarized_termtrans = 1
-" let g:solarized_ermcolors= 16
-" colorscheme solarized
-" ========================
 
 " ====solorized_flattened_settings===
+" set background=light
+set background=dark
+set fillchars+=vert:│
 colorscheme flattened_dark
 " colorscheme flattened_light
-set fillchars+=vert:│
 hi VertSplit ctermfg=NONE ctermbg=NONE guibg=NONE
 hi Normal ctermfg=12  ctermbg=NONE  guifg=#839496  guibg=#002b36  gui=NONE
 hi SignColumn cterm=NONE  ctermfg=3  ctermbg=0  guifg=#839496  guibg=NONE  gui=NONE
@@ -221,22 +181,10 @@ hi CocWarningFloat ctermbg=0 ctermfg=3
 hi CocErrorSign ctermfg=1 ctermbg=0
 hi CocErrorHighlight cterm=underline ctermfg=1
 hi CocErrorFloat ctermbg=0 ctermfg=1
-" hi CocWarningVirtualText ctermfg=1 ctermbg=10
 hi CocFloating ctermbg=0 ctermfg=4
 hi NormalFloat ctermbg=0 ctermfg=4
 " ========================
 "
-"
-" ====solorized_truecolor_settings===
-" let g:solarized_old_cursor_style=1
-" let g:solarized_statusline="flat"
-" colorscheme solarized8_high
-" hi SignColumn guibg=#073642
-" hi EndOfBuffer guifg=#002b36
-" hi CocErrorSign  guifg=#dc322f guibg=#073642
-" hi CocWarningSign guifg=#b589k0 guibg=#073642
-" hi CocInfoSign guifg=#268bd2 guibg=#073642
-" ========================
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
@@ -259,15 +207,6 @@ vnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 " Edit .vimrc
 map <leader>vl :edit $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
-
-""" Plugins Keymaps
-
-" nmap <C-m> :NERDTreeFind<CR>
-" nmap <silent> <leader><leader> :NERDTreeToggle<CR>
-nmap <silent> <leader><leader> :CocCommand explorer
-      \ --toggle
-      \ --width=45
-      \ <CR>
 
 nnoremap <leader>b :BufExplorer<CR>
 
@@ -293,12 +232,6 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.tsx'
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-
-let g:buffergator_viewport_split_policy = "B"
-let g:buffergator_sort_regime = "mru"
-
-let g:vim_markdown_folding_disabled = 1
-
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
@@ -312,17 +245,11 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
-
-
-" =======NERDTree==========
-let NERDTreeIgnore = ['\.pyc$', '\.retry$', '.git\']
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 0
-
-" And here is how to automatically close a tab if the only remaining window is NerdTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"==========================
+nnoremap <leader>fb :Buffers<CR>
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
 
 nmap <silent> // :nohlsearch<CR>
@@ -337,22 +264,18 @@ let g:bufExplorerShowRelativePath=1
 
 
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-
-if filereadable(expand("~/.vimrc.after"))
-  source ~/.vimrc.after
-endif
-
 augroup common
   autocmd BufEnter * EnableStripWhitespaceOnSave
 augroup END
 
 " Set comments for racket and schema:
 autocmd FileType racket,scheme setlocal commentstring=;;\ %s
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+
+nmap <silent> <leader><leader> :CocCommand explorer
+      \ --toggle
+      \ --width=45
+      \ <CR>
 
 
 " if hidden not set, TextEdit might fail.
@@ -402,10 +325,11 @@ nmap <leader>cr <Plug>(coc-references)
 
 nmap <leader>cl :CocList --number-select<cr>
 nmap <leader>cL :CocListResume <cr>
+nnoremap <silent> <leader>cy  :<C-u>CocList -A --normal yank<cr>
+
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+nnoremap <silent><leader>cD :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
@@ -413,9 +337,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -437,22 +358,13 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ca  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-" nmap <leader>cx  <Plug>(coc-fix-current)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+nmap <leader>cx  <Plug>(coc-fix-current)
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
-" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" if you want to disable auto detect, comment out those two lines
-" let g:airline#extensions#disable_rtp_load = 1
-" let g:airline_extensions = ['branch', 'coc']
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'

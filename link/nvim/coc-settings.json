@@ -30,5 +30,8 @@
     "indent",
     "icon",
     "filename"
-  ]
+  ],
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.column.indent.topLevel": true,
+  "explorer.file.column.filename.maxWidth": 50
 }
