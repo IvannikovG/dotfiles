@@ -4,6 +4,7 @@
 if [[  `uname` == 'Darwin' ]]; then
   alias ls='ls -F -G'
 else
+  alias update-all='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt autoremove && sudo npm update -g && brew update && brew upgrade && brew cleanup'
   alias ls='ls -F --color=auto'
 fi
 alias la='ls -AlFh'
