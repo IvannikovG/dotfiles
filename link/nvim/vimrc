@@ -3,7 +3,7 @@ set termguicolors
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'do': 'npm ci'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-html',
@@ -161,8 +161,8 @@ syntax on
 " ====solorized_flattened_settings===
 " set background=light
 set background=dark
-set fillchars+=vert:│
 colorscheme flattened_dark
+set fillchars+=vert:│
 " colorscheme flattened_light
 hi VertSplit ctermfg=NONE ctermbg=NONE guibg=NONE
 hi Normal ctermfg=12  ctermbg=NONE  guifg=#839496  guibg=#002b36  gui=NONE
@@ -171,19 +171,19 @@ hi SignColumn cterm=NONE  ctermfg=3  ctermbg=0  guifg=#839496  guibg=#073642  gu
 
 hi CursorLine cterm=NONE  ctermbg=0  guibg=#08323D  guisp=#93a1a1  gui=NONE
 hi CursorColumn cterm=NONE  ctermbg=0  guibg=#08323D  gui=NONE
-hi CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  gui=NONE
+hi CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  guibg=#073642 gui=NONE
 
 hi EndOfBuffer ctermfg=NONE ctermbg=NONE
 
-hi CocInfoSign ctermfg=4 ctermbg=0
-hi CocWarningSign ctermfg=3 ctermbg=0
+hi CocInfoSign ctermfg=4 ctermbg=0 guibg=#073642
+hi CocWarningSign ctermfg=3 ctermbg=0 guifg=#b58900 guibg=#073642
 hi CocWarningHighlight cterm=underline ctermfg=3
-hi CocWarningFloat ctermbg=0 ctermfg=3
-hi CocErrorSign ctermfg=1 ctermbg=0
+hi CocWarningFloat ctermbg=0 ctermfg=3 guifg=#b58900 guibg=#073642
+hi CocErrorSign ctermfg=1 ctermbg=0 guifg=#dc322f guibg=#073642
 hi CocErrorHighlight cterm=underline ctermfg=1
-hi CocErrorFloat ctermbg=0 ctermfg=1
-hi CocFloating ctermbg=0 ctermfg=4
-hi NormalFloat ctermbg=0 ctermfg=4
+hi CocErrorFloat ctermbg=0 ctermfg=1 guifg=#dc322f
+hi CocFloating ctermbg=0 ctermfg=4 guibg=#083743
+hi NormalFloat ctermbg=0 ctermfg=4 guibg=#083743
 " ========================
 "
 
@@ -286,6 +286,7 @@ set hidden
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 set shortmess+=I " disable start screen
+set shortmess+=c
 
 
 " always show signcolumns
