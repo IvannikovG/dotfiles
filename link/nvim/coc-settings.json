@@ -29,9 +29,9 @@
     "diagnosticError",
     "indent",
     "icon",
-    "filename"
+    "filename",
+    "size"
   ],
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.column.indent.topLevel": true,
-  "explorer.file.column.filename.maxWidth": 50
+  "explorer.file.column.indent.topLevel": false
 }

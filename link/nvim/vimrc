@@ -85,6 +85,7 @@ Plug 'tpope/vim-rhubarb'
 
 " ColorSchemas
 Plug 'romainl/flattened'
+Plug 'lifepillar/vim-solarized8'
 
 " Vim plugin that provides additional text objects
 Plug 'wellle/targets.vim'
@@ -161,29 +162,31 @@ syntax on
 " ====solorized_flattened_settings===
 " set background=light
 set background=dark
-colorscheme flattened_dark
+" colorscheme flattened_dark
+colorscheme solarized8
+" colorscheme solarized8_high
 set fillchars+=vert:│
-" colorscheme flattened_light
 hi VertSplit ctermfg=NONE ctermbg=NONE guibg=NONE
-hi Normal ctermfg=12  ctermbg=NONE  guifg=#839496  guibg=#002b36  gui=NONE
+" hi Normal ctermfg=12  ctermbg=NONE  guifg=#839496 gui=NONE
 
 hi SignColumn cterm=NONE  ctermfg=3  ctermbg=0  guifg=#839496  guibg=#073642  gui=NONE
 
-hi CursorLine cterm=NONE  ctermbg=0  guibg=#08323D  guisp=#93a1a1  gui=NONE
+hi CursorLine cterm=NONE  ctermbg=0  guibg=#08323D  guisp=#93a1a1  guifg=NONE gui=NONE
 hi CursorColumn cterm=NONE  ctermbg=0  guibg=#08323D  gui=NONE
 hi CursorLineNr cterm=NONE ctermbg=0 ctermfg=3  guifg=#b58900  guibg=#073642 gui=NONE
 
-hi EndOfBuffer ctermfg=NONE ctermbg=NONE
+hi EndOfBuffer ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
 
-hi CocInfoSign ctermfg=4 ctermbg=0 guibg=#073642
+hi CocInfoSign ctermfg=4 ctermbg=0 guibg=#073642 guifg=#268bd2
 hi CocWarningSign ctermfg=3 ctermbg=0 guifg=#b58900 guibg=#073642
 hi CocWarningHighlight cterm=underline ctermfg=3
 hi CocWarningFloat ctermbg=0 ctermfg=3 guifg=#b58900 guibg=#073642
 hi CocErrorSign ctermfg=1 ctermbg=0 guifg=#dc322f guibg=#073642
 hi CocErrorHighlight cterm=underline ctermfg=1
 hi CocErrorFloat ctermbg=0 ctermfg=1 guifg=#dc322f
-hi CocFloating ctermbg=0 ctermfg=4 guibg=#083743
-hi NormalFloat ctermbg=0 ctermfg=4 guibg=#083743
+hi CocFloating ctermbg=0 ctermfg=4 guibg=#073642
+hi NormalFloat ctermbg=0 ctermfg=4 guibg=#073642
+" hi MatchParen
 " ========================
 "
 
@@ -207,7 +210,7 @@ vnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 " Edit .vimrc
 map <leader>vl :edit $MYVIMRC<CR>
-map <leader>vr :source $MYVIMRC<CR>
+map <leader>vr :source $MYVIMRC<CR> :CocRestart<CR>
 
 nnoremap <leader>b :BufExplorer<CR>
 
@@ -292,6 +295,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 " set signcolumn=auto:2
+au InsertLeave * set nopaste
 set pastetoggle=<F3>
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -376,6 +380,6 @@ let g:airline#extensions#keymap#enabled = 0
 let g:airline_detect_spell=0
 let g:airline_detect_spelllang=0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
