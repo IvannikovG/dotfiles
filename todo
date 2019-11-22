@@ -1,2 +1,0 @@
-# Add install bash 4 for mac os
-install bash;echo /usr/local/bin/bash|sudo tee -a /etc/shells;chsh -s /usr/local/bin/bash

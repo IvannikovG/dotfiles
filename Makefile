@@ -1,16 +1,19 @@
 nvim_setup:
 	mkdir -p ~/.config/nvim
-	ln -sb $(PWD)/link/nvim/vimrc ~/.config/nvim/init.vim
-	ln -sb $(PWD)/link/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+	ln -s $(PWD)/link/nvim/vimrc ~/.config/nvim/init.vim
+	ln -s $(PWD)/link/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+
+spacemacs_setup:
+	ln -s $(PWD)/.spacemacs.d ~/.spacemacs.d
 
 dotfiles_setup:
-	ln -sb $(PWD)/source/ ~/.bash_source
-	ln -sb $(PWD)/link/common/bash_profile ~/.bash_profile
-	ln -sb $(PWD)/link/common/bashrc ~/.bashrc
-	ln -sb $(PWD)/link/common/gitconfig ~/.gitconfig
-	ln -sb $(PWD)/link/common/gitignore ~/.gitignore
-	ln -sb $(PWD)/link/common/inputrc ~/.inputrc
-	ln -sb $(PWD)/link/common/tmux.conf ~/.tmux.conf
+	ln -s $(PWD)/source/ ~/.bash_source
+	ln -s $(PWD)/link/common/bash_profile ~/.bash_profile
+	ln -s $(PWD)/link/common/bashrc ~/.bashrc
+	ln -s $(PWD)/link/common/gitconfig ~/.gitconfig
+	ln -s $(PWD)/link/common/gitignore ~/.gitignore
+	ln -s $(PWD)/link/common/inputrc ~/.inputrc
+	ln -s $(PWD)/link/common/tmux.conf ~/.tmux.conf
 
 setup: nvim_setup dotfiles_setup
 
