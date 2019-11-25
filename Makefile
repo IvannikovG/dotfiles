@@ -4,7 +4,7 @@ nvim_setup:
 	ln -s $(PWD)/link/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 spacemacs_setup:
-	ln -s $(PWD)/.spacemacs.d ~/.spacemacs.d
+	ln -s $(PWD)/link/spacemacs.d ~/.spacemacs.d
 
 dotfiles_setup:
 	ln -s $(PWD)/source/ ~/.bash_source
