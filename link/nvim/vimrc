@@ -194,7 +194,7 @@ set signcolumn=yes
 au InsertLeave * set nopaste
 " filetypes settings
 " Set comments for racket and schema:
-autocmd FileType racket,scheme setlocal commentstring=;;\ %s
+autocmd FileType racket,scheme,clojure setlocal commentstring=;;\ %s
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 " ===============================================================
 
@@ -280,8 +280,8 @@ nmap <leader>cR <Plug>(coc-references)
 nmap <leader>cl :CocList --number-select<cr>
 nmap <leader>cL :CocListResume <cr>
 nnoremap <silent> <leader>cy  :<C-u>CocList -A --normal yank<cr>
-" Use K for show documentation in preview window
-nnoremap <silent>K :call <SID>show_documentation()<CR>
+" Use leader cD for show documentation in preview window
+nnoremap <silent><leader>cD :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
