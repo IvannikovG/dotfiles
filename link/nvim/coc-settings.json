@@ -32,6 +32,6 @@
     "filename",
     "size"
   ],
-  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableNerdfont": false,
   "explorer.file.column.indent.topLevel": false
 }
