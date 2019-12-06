@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      treemacs
      version-control
      (clojure :variables
-              clojure-enable-fancify-symbols t
+              ;; clojure-enable-fancify-symbols t
               clojure-enable-sayid t
               clojure-enable-clj-refactor t)
      osx
