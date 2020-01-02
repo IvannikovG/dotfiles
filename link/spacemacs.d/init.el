@@ -494,8 +494,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 70)
+  ;; (setq split-height-threshold nil)
+  ;; (setq split-width-threshold 70)
   (define-key evil-normal-state-map (kbd "C-;") 'evil-repeat-find-char-reverse)
 
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "CANCELLED")))
