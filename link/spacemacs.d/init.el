@@ -508,6 +508,8 @@ before packages are loaded."
 
   (setq powerline-default-separator 'arrow)
 
+  (setq evil-lisp-state-enter-lisp-state-on-command nil)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
