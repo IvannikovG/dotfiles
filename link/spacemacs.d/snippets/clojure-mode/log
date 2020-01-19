@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : log
+#key : log
+#contributor : Maxim Putintsev
+# --
+(println "\n\nSTART: \n")
+(clojure.pprint/pprint $1)
+(println "END: \n")
