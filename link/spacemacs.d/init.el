@@ -51,7 +51,7 @@ This function should only modify configuration layer settings."
            helm-enable-auto-resize t
            helm-mode-fuzzy-match t
            helm-buffers-fuzzy-matching t
-           helm-swoop-use-fuzzy-match t)
+           helm-swoop-use-fuzzy-match nil)
      lsp
      markdown
      multiple-cursors
@@ -62,10 +62,10 @@ This function should only modify configuration layer settings."
             shell-default-shell 'eshell)
      spell-checking
      syntax-checking
-     treemacs
+     ;; treemacs
      version-control
      (clojure :variables
-              ;; clojure-enable-fancify-symbols t
+              clojure-enable-fancify-symbols t
               clojure-enable-sayid t
               clojure-enable-clj-refactor t)
      osx
@@ -196,8 +196,9 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   dotspacemacs-startup-lists '((recents . 7)
+                                (projects . 7)
+                                (bookmarks . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -235,7 +236,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -244,7 +245,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("JetBrains Mono"
                                ;; "Source Code Pro"
-                               :size 16.0
+                               :size 15
                                :weight normal
                                :width normal)
 
