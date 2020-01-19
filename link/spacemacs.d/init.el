@@ -92,6 +92,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       ;; doom-themes
                                       prettier-js
+                                      adaptive-wrap
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -236,6 +237,8 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+
+   ;; dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
    dotspacemacs-mode-line-theme '(all-the-icons :separator arrow)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
@@ -490,6 +493,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
+
   )
 
 (defun dotspacemacs/user-load ()
@@ -512,6 +517,15 @@ before packages are loaded."
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "CANCELLED")))
 
   (setq evil-lisp-state-enter-lisp-state-on-command nil)
+
+  (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
+  (add-hook 'prog-mode-hook 'visual-line-mode)
+  ;; Make evil-mode up/down operate in screen lines instead of logical lines
+  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  ;; Also in visual mode
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
