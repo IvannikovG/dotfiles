@@ -104,7 +104,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(solarized-theme)
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -225,13 +225,19 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark an one light)
    dotspacemacs-themes '(
+                         ;; sanityinc-solarized-dark
+                         ;; sanityinc-solarized-light
+                         solarized-dark-high-contrast
+                         ;; solarized-dark
+                         solarized-light-high-contrast
+                         ;; solarized-light
                          ;; doom-one
                          ;; doom-one-light
                          ;; doom-city-lights
                          ;; doom-solarized-dark
                          ;; doom-solarized-light
-                         spacemacs-dark
-                         spacemacs-light
+                         ;; spacemacs-dark
+                         ;; spacemacs-light
                          ;; gruvbox-dark-hard
                          ;; gruvbox-light-hard
                          )
@@ -531,6 +537,7 @@ before packages are loaded."
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "ec" 'cider-pprint-eval-last-sexp-to-comment)
+
 
   )
 
