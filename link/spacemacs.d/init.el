@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; themes-megapack
+     themes-megapack
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
@@ -531,67 +531,6 @@ before packages are loaded."
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "ec" 'cider-pprint-eval-last-sexp-to-comment)
-
-
-
-  ;; ;; (defun enable-solarized-in-terminal (frame)
-  ;; ;;   ;; cf. http://philipdaniels.com/blog/2017/02/spacemacs---configuring-the-solarized-theme/
-  ;; ;;   (unless (display-graphic-p frame)
-  ;; ;;     (set-frame-parameter frame 'background-mode 'dark)
-  ;; ;;     (set-terminal-parameter frame 'background-mode 'dark)
-  ;; ;;     (spacemacs/load-theme 'solarized)
-  ;; ;;     ))
-  ;; (setq theming-modifications
-  ;;     '((solarized
-  ;;        ;; Provide a sort of "on-off" modeline whereby the current buffer has a nice
-  ;;        ;; bright blue background, and all the others are in cream.
-  ;;        ;; TODO: Change to use variables here. However, got error:
-  ;;        ;; (Spacemacs) Error in dotspacemacs/user-config: Wrong type argument: stringp, pd-blue
-  ;;        ;; (mode-line :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
-  ;;        ;; (powerline-active1 :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
-  ;;        ;; (powerline-active2 :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
-  ;;        ;; (mode-line-inactive :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
-  ;;        ;; (powerline-inactive1 :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
-  ;;        ;; (powerline-inactive2 :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
-  ;;        ;; Make a really prominent helm selection line.
-  ;;        (helm-selection :foreground "black" :background "red" :inverse-video nil)
-  ;;        ;; See comment above about dotspacemacs-colorize-cursor-according-to-state.
-  ;;        ;; (cursor :background "#b58900")
-  ;;      )))
-
-
-  ;; (set-terminal-parameter nil 'background-mode 'dark)
-  ;; (set-frame-parameter nil 'background-mode 'dark)
-  ;; (spacemacs/load-theme 'solarized)
-
-  ;; (defun enable-solarized-in-gui ()
-  ;;   (mapc 'disable-theme custom-enabled-themes)
-  ;;   (setup-solarized-theme)
-  ;;   (spacemacs/load-theme 'solarized)
-  ;;   )
-
-  ;; (defun setup-solarized-theme ()
-  ;;   ;; I like a transparent background in the terminal
-  ;;   (custom-set-faces
-  ;;    '(default (
-  ;;               (((type tty) (background dark)) (:background "nil"))
-  ;;               )))
-  ;;   ;; The frame number indicator has some problems with inverse video
-  ;;   (set-face-inverse-video 'spacemacs-motion-face nil)
-  ;;   (set-face-inverse-video 'spacemacs-insert-face nil)
-  ;;   (set-face-inverse-video 'spacemacs-normal-face nil)
-  ;;   (set-face-inverse-video 'spacemacs-visual-face nil)
-  ;;   (set-face-inverse-video 'spacemacs-replace-face nil)
-  ;;   )
-
-  ;; ;; For GUI clients, after-make-frame-functions is messed up (probably it is
-  ;; ;; called too early), and some colors are messed up. For terminal clients on
-  ;; ;; the other hand, it works perfectly. The background-mode is necessary for
-  ;; ;; terminal clients, but (apparently) not for GUI clients, and has to be set
-  ;; ;; for each frame individually.
-  ;; (spacemacs|do-after-display-system-init (enable-solarized-in-gui))
-  ;; (add-hook 'after-make-frame-functions 'enable-solarized-in-terminal)
-  ;; (enable-solarized-in-gui)
 
   )
 

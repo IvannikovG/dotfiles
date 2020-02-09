@@ -78,3 +78,5 @@ export PYTHONIOENCODING="UTF-8"
 
 export NVM_DIR="$HOME/.nvm"
 # [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+
+export TERM=xterm-24bit
