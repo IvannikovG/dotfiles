@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     themes-megapack
+     ;; themes-megapack
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
@@ -47,15 +47,18 @@ This function should only modify configuration layer settings."
      better-defaults
      emacs-lisp
      git
-     (helm :variables
-           helm-enable-auto-resize t
-           helm-mode-fuzzy-match t
-           helm-buffers-fuzzy-matching t
-           helm-swoop-use-fuzzy-match nil)
+     (ivy :variables
+          ivy-enable-advanced-buffer-information t)
+     ;; (helm :variables
+     ;;       helm-enable-auto-resize t
+     ;;       helm-mode-fuzzy-match t
+     ;;       helm-buffers-fuzzy-matching t
+     ;;       helm-swoop-use-fuzzy-match nil)
      lsp
      markdown
-     multiple-cursors
-     org
+     ;; multiple-cursors
+     ;; (org :variables
+     ;;      org-enable-trello-support t)
      (shell :variables
             shell-default-height 40
             shell-default-position 'bottom
@@ -63,9 +66,9 @@ This function should only modify configuration layer settings."
      spell-checking
      syntax-checking
      ;; treemacs
-     version-control
+     ;; version-control
      (clojure :variables
-              clojure-enable-fancify-symbols t
+              clojure-enable-fancify-symbols nil
               clojure-enable-sayid t
               clojure-enable-clj-refactor t)
      osx
@@ -80,6 +83,7 @@ This function should only modify configuration layer settings."
                  )
      sql
      restclient
+     theming
      )
 
    ;; List of additional packages that will be installed without being
@@ -93,13 +97,14 @@ This function should only modify configuration layer settings."
                                       ;; doom-themes
                                       prettier-js
                                       adaptive-wrap
+                                      (color-theme-solarized :location (recipe :fetcher github :repo "sellout/emacs-color-theme-solarized"))
                                       )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(solarized-theme)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -220,8 +225,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark an one light)
    dotspacemacs-themes '(
-                         doom-city-lights
-                         doom-one-light
+                         solarized
+                         ;; doom-one
+                         ;; doom-one-light
+                         ;; doom-city-lights
                          ;; doom-solarized-dark
                          ;; doom-solarized-light
                          ;; spacemacs-dark
@@ -237,9 +244,8 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-
-   ;; dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
-   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;; dotspacemacs-mode-line-theme '(all-the-icons :separator arrow)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -493,8 +499,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
-
   )
 
 (defun dotspacemacs/user-load ()
@@ -526,6 +530,70 @@ before packages are loaded."
   ;; Also in visual mode
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+
+  (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "ec" 'cider-pprint-eval-last-sexp-to-comment)
+
+
+
+  ;; (defun enable-solarized-in-terminal (frame)
+  ;;   ;; cf. http://philipdaniels.com/blog/2017/02/spacemacs---configuring-the-solarized-theme/
+  ;;   (unless (display-graphic-p frame)
+  ;;     (set-frame-parameter frame 'background-mode 'dark)
+  ;;     (set-terminal-parameter frame 'background-mode 'dark)
+  ;;     (spacemacs/load-theme 'solarized)
+  ;;     ))
+  (setq theming-modifications
+      '((solarized
+         ;; Provide a sort of "on-off" modeline whereby the current buffer has a nice
+         ;; bright blue background, and all the others are in cream.
+         ;; TODO: Change to use variables here. However, got error:
+         ;; (Spacemacs) Error in dotspacemacs/user-config: Wrong type argument: stringp, pd-blue
+         ;; (mode-line :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
+         ;; (powerline-active1 :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
+         ;; (powerline-active2 :foreground "#e9e2cb" :background "#2075c7" :inverse-video nil)
+         ;; (mode-line-inactive :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
+         ;; (powerline-inactive1 :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
+         ;; (powerline-inactive2 :foreground "#2075c7" :background "#e9e2cb" :inverse-video nil)
+         ;; Make a really prominent helm selection line.
+         (helm-selection :foreground "black" :background "red" :inverse-video nil)
+         ;; See comment above about dotspacemacs-colorize-cursor-according-to-state.
+         ;; (cursor :background "#b58900")
+       )))
+
+
+  (set-terminal-parameter nil 'background-mode 'dark)
+  (set-frame-parameter nil 'background-mode 'dark)
+  (spacemacs/load-theme 'solarized)
+
+  (defun enable-solarized-in-gui ()
+    (mapc 'disable-theme custom-enabled-themes)
+    (setup-solarized-theme)
+    (spacemacs/load-theme 'solarized)
+    )
+
+  (defun setup-solarized-theme ()
+    ;; I like a transparent background in the terminal
+    (custom-set-faces
+     '(default (
+                (((type tty) (background dark)) (:background "nil"))
+                )))
+    ;; The frame number indicator has some problems with inverse video
+    (set-face-inverse-video 'spacemacs-motion-face nil)
+    (set-face-inverse-video 'spacemacs-insert-face nil)
+    (set-face-inverse-video 'spacemacs-normal-face nil)
+    (set-face-inverse-video 'spacemacs-visual-face nil)
+    (set-face-inverse-video 'spacemacs-replace-face nil)
+    )
+
+  ;; For GUI clients, after-make-frame-functions is messed up (probably it is
+  ;; called too early), and some colors are messed up. For terminal clients on
+  ;; the other hand, it works perfectly. The background-mode is necessary for
+  ;; terminal clients, but (apparently) not for GUI clients, and has to be set
+  ;; for each frame individually.
+  (spacemacs|do-after-display-system-init (enable-solarized-in-gui))
+  (add-hook 'after-make-frame-functions 'enable-solarized-in-terminal)
+  (enable-solarized-in-gui)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -540,11 +608,14 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(helm-completion-style (quote emacs))
  '(package-selected-packages
    (quote
-    (restclient-helm ob-restclient ob-http company-restclient restclient know-your-http-well sql-indent zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme chocolate-theme autothemer cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme ansi package-build shut-up epl git commander f dash s wgrep smex ivy-yasnippet ivy-xref ivy-purpose ivy-hydra flyspell-correct-ivy counsel-projectile counsel-css counsel swiper ivy nginx-mode yaml-mode clj-refactor inflections edn peg company-quickhelp web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify tide typescript-mode prettier-js nodejs-repl livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern neotree yasnippet-snippets xterm-color ws-butler writeroom-mode winum which-key vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lorem-ipsum link-hint launchctl indent-guide hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline diminish diff-hl devdocs company-statistics company-lsp column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu cider centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+    (ivy-rich restclient-helm ob-restclient ob-http company-restclient restclient know-your-http-well sql-indent zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme chocolate-theme autothemer cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme ansi package-build shut-up epl git commander f dash s wgrep smex ivy-yasnippet ivy-xref ivy-purpose ivy-hydra flyspell-correct-ivy counsel-projectile counsel-css counsel swiper ivy nginx-mode yaml-mode clj-refactor inflections edn peg company-quickhelp web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify tide typescript-mode prettier-js nodejs-repl livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern neotree yasnippet-snippets xterm-color ws-butler writeroom-mode winum which-key vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lorem-ipsum link-hint launchctl indent-guide hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline diminish diff-hl devdocs company-statistics company-lsp column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu cider centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
  '(sql-connection-alist
    (quote
     (("cleo_proto"
