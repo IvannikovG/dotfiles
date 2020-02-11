@@ -504,6 +504,20 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setq solarized-high-contrast-mode-line nil)
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-use-less-bold t)
+
+  (setq theming-modifications
+        '((solarized-dark-high-contrast
+           ;; Modeline
+           (mode-line :underline nil)
+           (powerline-active1 :background "#00222b")
+           (ivy-prompt-match :underline nil)
+           (ivy-current-match :underline nil
+                              :background "#2e4750")
+           (company-tooltip-selection  :background "#2e4750")
+           )))
   )
 
 (defun dotspacemacs/user-load ()
@@ -538,8 +552,10 @@ before packages are loaded."
 
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "ec" 'cider-pprint-eval-last-sexp-to-comment)
 
+  (setq ivy-initial-inputs-alist nil)
 
   )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
