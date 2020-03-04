@@ -1,14 +1,6 @@
 #!/bin/bash
 
-if [[  `uname` == 'Linux' ]]; then
-  export PATH=$(brew --prefix)/bin:$PATH
-  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-  yandex-disk start
-fi
-
 export NVM_DIR="$HOME/.nvm"
-
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mput/google-cloud-sdk/path.bash.inc' ]; then . '/Users/mput/google-cloud-sdk/path.bash.inc'; fi
@@ -16,7 +8,15 @@ if [ -f '/Users/mput/google-cloud-sdk/path.bash.inc' ]; then . '/Users/mput/goog
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mput/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/mput/google-cloud-sdk/completion.bash.inc'; fi
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 export PATH="/usr/local/sbin:$PATH"
 
+
+if [[  `uname` == 'Darwin' ]]; then
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+else
+    export PATH=$(brew --prefix)/bin:$PATH
+    export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+    yandex-disk start
+    source <(kubectl completion bash)
+fi
