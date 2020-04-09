@@ -4,7 +4,7 @@
 
 # Make `vim` the default editor.
 
-export EDITOR="nvim"
+export EDITOR="vim"
 
 export MOSH_ESCAPE_KEY="~"
 

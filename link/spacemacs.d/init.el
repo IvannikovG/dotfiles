@@ -85,7 +85,7 @@ This function should only modify configuration layer settings."
      sql
      restclient
      theming
-     tmux
+     ;; tmux
      )
 
    ;; List of additional packages that will be installed without being
