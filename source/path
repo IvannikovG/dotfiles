@@ -28,3 +28,5 @@ else
     yandex-disk start
     source <(kubectl completion bash)
 fi
+
+export PATH="$HOME/.emacs.d/bin:$PATH"

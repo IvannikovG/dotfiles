@@ -6,6 +6,9 @@ nvim_setup:
 spacemacs_setup:
 	ln -s $(PWD)/link/spacemacs.d ~/.spacemacs.d
 
+doom_setup:
+	ln -s $(PWD)/link/doom.d ~/.doom.d
+
 dotfiles_setup:
 	tic -x -o ~/.terminfo scripts/xterm-24bit.terminfo
 	ln -s $(PWD)/source/ ~/.bash_source
@@ -16,14 +19,4 @@ dotfiles_setup:
 	ln -s $(PWD)/link/common/inputrc ~/.inputrc
 	ln -s $(PWD)/link/common/tmux.conf ~/.tmux.conf
 
-
-setup: nvim_setup dotfiles_setup
-
-install:
-	ansible-playbook install.yml -i local -v -K
-
-ansible_install_ubuntu:
-	sudo apt-get install software-properties-common
-	sudo apt-add-repository ppa:ansible/ansible
-	sudo apt-get update
-	sudo apt-get install ansible
+# setup: nvim_setup dotfiles_setup
