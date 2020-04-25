@@ -9,6 +9,10 @@ spacemacs_setup:
 doom_setup:
 	ln -s $(PWD)/link/doom.d ~/.doom.d
 
+doom_packages_setup:
+	npm i -g bash-language-server
+	npm i -g typescript-language-server
+
 dotfiles_setup:
 	tic -x -o ~/.terminfo scripts/xterm-24bit.terminfo
 	ln -s $(PWD)/source/ ~/.bash_source

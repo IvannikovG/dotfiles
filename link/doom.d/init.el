@@ -19,7 +19,7 @@
        ;;japanese
 
        :completion
-       company           ; the ultimate code completion backend
+       (company +tng)           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ivy               ; a search engine for love and life
@@ -37,14 +37,14 @@
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;; pretty-code       ; ligatures or substitute text with pretty symbols
-       ;;tabs              ; an tab bar for Emacs
+       (popup +all)   ; tame sudden yet inevitable temporary windows
+       ;; (pretty-code +fira)       ; ligatures or substitute text with pretty symbols
+       ;; tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;; unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+       ;; window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
@@ -52,10 +52,10 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
-       ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
+       lispy             ; vim for lisp, for people who don't like vim
+       multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -65,7 +65,7 @@
        :emacs
        dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
+       ;; ibuffer         ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -73,7 +73,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;; shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       vterm             ; the best terminal emulation in Emacs
+       ;; vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -90,7 +90,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       ;; lsp
+       lsp
        macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
@@ -99,14 +99,14 @@
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
-       ;; tmux              ; an API for interacting with tmux
+       ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       ;; cc                ; C/C++/Obj-C madness
-       clojure           ; java with a lisp
+       cc                ; C/C++/Obj-C madness
+       (clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -126,7 +126,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -134,9 +134,9 @@
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       (markdown +grip)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
+       ;; nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        org               ; organize your plain life in plain text
        ;;perl              ; write code no one else can comprehend
@@ -152,7 +152,7 @@
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       (sh +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?

@@ -8,6 +8,8 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "mPut"
       user-mail-address "putintsev@gmail.com")
+(add-load-path! "vendor/")
+(require 'auto-dark-emacs)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,6 +27,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-solarized-dark)
+(setq auto-dark-emacs/dark-theme 'doom-solarized-dark)
+(setq auto-dark-emacs/dark-theme 'doom-solarized-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -36,28 +40,37 @@
 
 (setq avy-all-windows t)
 
-;; (add-hook! 'doom-load-theme-hook
-;;  (set-face-inverse-video-p 'vertical-border nil)
-;;  (set-face-background 'vertical-border (face-background 'default))
-;;  (set-display-table-slot standard-display-table
-;;                          'vertical-border
-;;                          (make-glyph-code ?│)))
+(setq initial-frame-alist
+'((top . 30) (left . 15) (width . 180) (height . 50)))
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(map! (:localleader
+          (:map (clojure-mode-map clojurescript-mode-map)
+            (:prefix ("e" . "eval")
+              "b" #'cider-eval-buffer
+              "f" #'cider-eval-defun-at-point
+              "F" #'cider-insert-defun-in-repl
+              "e" #'cider-eval-last-sexp
+              "E" #'cider-insert-last-sexp-in-repl
+              "r" #'cider-eval-region
+              "R" #'cider-insert-region-in-repl
+              "u" #'cider-undef
+              ";" #'cider-pprint-eval-last-sexp-to-comment))))
 
-;; Here are some additional functions/macros that could help you configure Doom:
+(setq cider-repl-pop-to-buffer-on-connect nil)
+
+;; here are some additional functions/macros that could help you configure doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package' for configuring packages
 ;; - `after!' for running code after a package has loaded
 ;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
+;;   this file. emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
 ;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c g k').
-;; This will open documentation for it, including demos of how they are used.
+;; to get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'k' (non-evil users must press 'c-c g k').
+;; this will open documentation for it, including demos of how they are used.
 ;;
-;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
+;; you can also try 'gd' (or 'c-c g d') to jump to their definition and see how
 ;; they are implemented.
