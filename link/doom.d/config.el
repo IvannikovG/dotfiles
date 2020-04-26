@@ -43,18 +43,34 @@
 (setq initial-frame-alist
 '((top . 30) (left . 15) (width . 180) (height . 50)))
 
+(use-package! lispyville
+  :when (featurep! :editor evil)
+  :hook (lispy-mode . lispyville-mode)
+  :config
+  (lispyville-set-key-theme
+   '((operators normal)
+     c-w
+     c-u
+     (prettify insert)
+     (atom-movement normal visual)
+     slurp/barf-lispy
+     additional
+     commentary
+     additional-insert)))
+
+
 (map! (:localleader
-          (:map (clojure-mode-map clojurescript-mode-map)
-            (:prefix ("e" . "eval")
-              "b" #'cider-eval-buffer
-              "f" #'cider-eval-defun-at-point
-              "F" #'cider-insert-defun-in-repl
-              "e" #'cider-eval-last-sexp
-              "E" #'cider-insert-last-sexp-in-repl
-              "r" #'cider-eval-region
-              "R" #'cider-insert-region-in-repl
-              "u" #'cider-undef
-              ";" #'cider-pprint-eval-last-sexp-to-comment))))
+        (:map (clojure-mode-map clojurescript-mode-map)
+          (:prefix ("e" . "eval")
+            "b" #'cider-eval-buffer
+            "f" #'cider-eval-defun-at-point
+            "F" #'cider-insert-defun-in-repl
+            "e" #'cider-eval-last-sexp
+            "E" #'cider-insert-last-sexp-in-repl
+            "r" #'cider-eval-region
+            "R" #'cider-insert-region-in-repl
+            "u" #'cider-undef
+            ";" #'cider-pprint-eval-last-sexp-to-comment))))
 
 (setq cider-repl-pop-to-buffer-on-connect nil)
 
