@@ -45,7 +45,7 @@
 
 (use-package! lispyville
   :when (featurep! :editor evil)
-  :hook (lispy-mode . lispyville-mode)
+  :hook ((emacs-lisp-mode clojure-mode hy-mode json-mode) . lispyville-mode)
   :config
   (lispyville-set-key-theme
    '((operators normal)
