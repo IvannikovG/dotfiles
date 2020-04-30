@@ -43,9 +43,18 @@
 (setq initial-frame-alist
 '((top . 30) (left . 15) (width . 180) (height . 50)))
 
+(use-package! paredit
+  :hook ((scheme-mode emacs-lisp-mode clojure-mode) . enable-paredit-mode))
+
+(use-package! aggressive-indent
+  :hook
+  (clojure-mode . aggressive-indent-mode)
+  (hy-mode . aggressive-indent-mode)
+  (emacs-lisp-mode . aggressive-indent-mode))
+
 (use-package! lispyville
   :when (featurep! :editor evil)
-  :hook ((emacs-lisp-mode clojure-mode hy-mode json-mode) . lispyville-mode)
+  :hook ((emacs-lisp-mode clojure-mode json-mode) . lispyville-mode) ;; :hook (lispy-mode . lispyville-mode)
   :config
   (lispyville-set-key-theme
    '((operators normal)
@@ -58,21 +67,55 @@
      commentary
      additional-insert)))
 
-
 (map! (:localleader
-        (:map (clojure-mode-map clojurescript-mode-map)
-          (:prefix ("e" . "eval")
-            "b" #'cider-eval-buffer
-            "f" #'cider-eval-defun-at-point
-            "F" #'cider-insert-defun-in-repl
-            "e" #'cider-eval-last-sexp
-            "E" #'cider-insert-last-sexp-in-repl
-            "r" #'cider-eval-region
-            "R" #'cider-insert-region-in-repl
-            "u" #'cider-undef
-            ";" #'cider-pprint-eval-last-sexp-to-comment))))
+       (:map (clojure-mode-map clojurescript-mode-map)
+        (:prefix ("e" . "eval")
+         "f" #'cider-eval-defun-at-point
+         "F" #'cider-insert-defun-in-repl
+         ";" #'cider-pprint-eval-last-sexp-to-comment)
+        (:prefix ("i")
+         "p" #'cider-inspector-pop)))
+      (:leader
+       (:map (clojure-mode-map clojurescript-mode-map emacs-lisp-mode-map)
+        (:prefix ("l" . "lisp")
+         "j" #'paredit-join-sexps
+         "c" #'paredit-split-sexp
+         "s" #'paredit-splice-sexp
+         "d" #'paredit-kill
+         "<" #'paredit-backward-slurp-sexp
+         ">" #'paredit-backward-barf-sexp
+         "." #'paredit-forward-slurp-sexp
+         "," #'paredit-forward-barf-sexp
+         "r" #'paredit-raise-sexp
+         "w" #'paredit-wrap-sexp
+         "[" #'paredit-wrap-square
+         "'" #'paredit-meta-doublequote
+         "{" #'paredit-wrap-curly)))
+      (:after ivy
+       :map ivy-minibuffer-map
+       "C-d" #'ivy-switch-buffer-kill))
 
-(setq cider-repl-pop-to-buffer-on-connect nil)
+(after! cider
+  (setq cider-repl-pop-to-buffer-on-connect nil)
+  (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :ttl 0 :select t :quit t))
+
+(set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
+
+(+global-word-wrap-mode +1)
+
+(after! lsp-mode
+  (setq lsp-enable-symbol-highlighting nil))
+
+(add-hook! '(clojure-mode-local-vars-hook
+             clojurec-mode-local-vars-hook
+             clojurescript-mode-local-vars-hook)
+  (defun lsp-cl-params ()
+    (setq-local lsp-enable-symbol-highlighting nil)
+    (setq-local lsp-diagnostic-package :none))
+  (defun my-flycheck-setup ()
+    (setq-local flycheck-disabled-checkers '(lsp))
+    (setq-local flycheck-checkers '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))))
+
 
 ;; here are some additional functions/macros that could help you configure doom:
 ;;
