@@ -100,6 +100,7 @@
   (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :ttl 0 :select t :quit t))
 
 (set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
+(set-popup-rule! "^\\*Flycheck*" :size 0.3 :side 'bottom :select t :quit t)
 
 (+global-word-wrap-mode +1)
 
