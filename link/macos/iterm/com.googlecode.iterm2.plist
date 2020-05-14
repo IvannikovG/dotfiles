@@ -373,9 +373,11 @@
 	<key>Default Bookmark Guid</key>
 	<string>2528AE9F-CDD3-4754-8821-DFF2DBF06F8D</string>
 	<key>DimBackgroundWindows</key>
-	<true/>
+	<false/>
+	<key>DimInactiveSplitPanes</key>
+	<false/>
 	<key>DimOnlyText</key>
-	<true/>
+	<false/>
 	<key>DoubleClickPerformsSmartSelection</key>
 	<true/>
 	<key>EnableAPIServer</key>
@@ -456,7 +458,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>12 137 1621 874 0 0 1680 1027 </string>
+	<string>169 153 1495 856 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>5 101 1675 909 0 0 1680 1027 </string>
 	<key>NeverWarnAboutSpaces</key>
@@ -689,13 +691,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.89019608497619629</real>
+				<real>0.21176470816135406</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.96470588445663452</real>
+				<real>0.16862745583057404</real>
 				<key>Red Component</key>
-				<real>0.99215686321258545</real>
+				<real>0.0</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -721,13 +723,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.45882353186607361</real>
+				<real>0.63137257099151611</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.43137255311012268</real>
+				<real>0.63137257099151611</real>
 				<key>Red Component</key>
-				<real>0.34509804844856262</real>
+				<real>0.57647061347961426</real>
 			</dict>
 			<key>Brighten Bold Text</key>
 			<true/>
@@ -744,13 +746,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.51372551918029785</real>
+				<real>0.58823531866073608</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.48235294222831726</real>
+				<real>0.58039218187332153</real>
 				<key>Red Component</key>
-				<real>0.3960784375667572</real>
+				<real>0.51372551918029785</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -770,13 +772,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.83529412746429443</real>
+				<real>0.25882354378700256</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.90980392694473267</real>
+				<real>0.21176470816135406</real>
 				<key>Red Component</key>
-				<real>0.93333333730697632</real>
+				<real>0.027450980618596077</real>
 			</dict>
 			<key>Cursor Type</key>
 			<integer>2</integer>
@@ -799,13 +801,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.51372551918029785</real>
+				<real>0.58823531866073608</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.48235294222831726</real>
+				<real>0.58039218187332153</real>
 				<key>Red Component</key>
-				<real>0.3960784375667572</real>
+				<real>0.51372551918029785</real>
 			</dict>
 			<key>Guid</key>
 			<string>2528AE9F-CDD3-4754-8821-DFF2DBF06F8D</string>
@@ -1153,26 +1155,26 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.45882353186607361</real>
+				<real>0.63137257099151611</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.43137255311012268</real>
+				<real>0.63137257099151611</real>
 				<key>Red Component</key>
-				<real>0.34509804844856262</real>
+				<real>0.57647061347961426</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.83529412746429443</real>
+				<real>0.25882354378700256</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.90980392694473267</real>
+				<real>0.21176470816135406</real>
 				<key>Red Component</key>
-				<real>0.93333333730697632</real>
+				<real>0.027450980618596077</real>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -1490,6 +1492,7 @@
 	<array>
 		<string>3.3.9</string>
 		<string>3.3.10beta3</string>
+		<string>3.3.10beta4</string>
 	</array>
 	<key>NoSyncAutoBurialReveal</key>
 	<true/>
@@ -1507,7 +1510,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>78998854-80A1-4D1A-B133-BFB73E493104</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>48</integer>
+	<integer>51</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1529,7 +1532,7 @@
 	<key>NoSyncPersistentRateLimitedUpdates</key>
 	<dict>
 		<key>CheckForUpdatedPythonRuntime</key>
-		<real>609679317.84067702</real>
+		<real>610474191.199368</real>
 	</dict>
 	<key>NoSyncRecordedVariables</key>
 	<dict>
@@ -2365,7 +2368,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-26T12:21:45Z</date>
+	<date>2020-05-06T17:02:31Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -2375,6 +2378,8 @@
 	<key>SeparateStatusBarsPerPane</key>
 	<false/>
 	<key>SeparateWindowTitlePerTab</key>
+	<true/>
+	<key>SetCookie</key>
 	<true/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
@@ -4742,7 +4747,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.10beta3</string>
+	<string>3.3.10beta4</string>
 	<key>preferIntegratedGPU</key>
 	<true/>
 </dict>

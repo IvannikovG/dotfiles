@@ -1,4 +1,5 @@
 scratches/*
+.lsp/*
 
 # clojure
 trace.edn

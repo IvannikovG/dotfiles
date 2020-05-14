@@ -32,7 +32,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Yandex.Disk.localized/org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -46,11 +46,11 @@
 (use-package! paredit
   :hook ((scheme-mode emacs-lisp-mode clojure-mode) . enable-paredit-mode))
 
-(use-package! aggressive-indent
-  :hook
-  (clojure-mode . aggressive-indent-mode)
-  (hy-mode . aggressive-indent-mode)
-  (emacs-lisp-mode . aggressive-indent-mode))
+;; (use-package! aggressive-indent
+;;   :hook
+;;   (clojure-mode . aggressive-indent-mode)
+;;   (hy-mode . aggressive-indent-mode)
+;;   (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package! lispyville
   :when (featurep! :editor evil)
@@ -100,6 +100,7 @@
   (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :ttl 0 :select t :quit t))
 
 (set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
+(set-popup-rule! "^\\*info*" :size 0.7 :side 'bottom :select t :quit t)
 (set-popup-rule! "^\\*Flycheck*" :size 0.3 :side 'bottom :select t :quit t)
 
 (+global-word-wrap-mode +1)
