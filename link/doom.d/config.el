@@ -21,7 +21,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 15))
+(setq doom-font (font-spec :family "iosevka" :size 17))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -41,7 +41,7 @@
 (setq avy-all-windows t)
 
 (setq initial-frame-alist
-'((top . 30) (left . 15) (width . 180) (height . 50)))
+'((top . 30) (left . 15) (width . 206) (height . 51)))
 
 (use-package! paredit
   :hook ((scheme-mode emacs-lisp-mode clojure-mode) . enable-paredit-mode))
@@ -52,20 +52,20 @@
 ;;   (hy-mode . aggressive-indent-mode)
 ;;   (emacs-lisp-mode . aggressive-indent-mode))
 
-(use-package! lispyville
-  :when (featurep! :editor evil)
-  :hook ((emacs-lisp-mode clojure-mode json-mode) . lispyville-mode) ;; :hook (lispy-mode . lispyville-mode)
-  :config
-  (lispyville-set-key-theme
-   '((operators normal)
-     c-w
-     c-u
-     (prettify insert)
-     (atom-movement normal visual)
-     slurp/barf-lispy
-     additional
-     commentary
-     additional-insert)))
+;; (use-package! lispyville
+;;   :when (featurep! :editor evil)
+;;   :hook ((emacs-lisp-mode clojure-mode json-mode) . lispyville-mode) ;; :hook (lispy-mode . lispyville-mode)
+;;   :config
+;;   (lispyville-set-key-theme
+;;    '((operators normal)
+;;      c-w
+;;      c-u
+;;      (prettify insert)
+;;      (atom-movement normal visual)
+;;      slurp/barf-lispy
+;;      additional
+;;      commentary
+;;      additional-insert)))
 
 (map! (:localleader
        (:map (clojure-mode-map clojurescript-mode-map)
@@ -97,7 +97,12 @@
 
 (after! cider
   (setq cider-repl-pop-to-buffer-on-connect nil)
-  (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :ttl 0 :select t :quit t))
+  (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :select t :quit nil)
+
+  ;; (setq clojure-indent-style 'align-arguments)
+  ;; (setq clojure-align-forms-automatically nil)
+  )
+
 
 (set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
 (set-popup-rule! "^\\*info*" :size 0.7 :side 'bottom :select t :quit t)
@@ -118,6 +123,9 @@
     (setq-local flycheck-disabled-checkers '(lsp))
     (setq-local flycheck-checkers '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))))
 
+
+(define-key evil-normal-state-map "x" 'delete-forward-char)     ; delete to the black hole
+(define-key evil-normal-state-map "X" 'delete-backward-char)
 
 ;; here are some additional functions/macros that could help you configure doom:
 ;;
