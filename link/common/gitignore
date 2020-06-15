@@ -1,5 +1,7 @@
 scratches/*
 .lsp/*
+.idea/*
+*.iml
 
 # clojure
 trace.edn
