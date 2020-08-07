@@ -2,6 +2,7 @@ scratches/*
 .lsp/*
 .idea/*
 *.iml
+pgdata*
 
 # clojure
 trace.edn

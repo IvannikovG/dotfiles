@@ -21,7 +21,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "iosevka" :size 17))
+(setq doom-font (font-spec :family "iosevka" :size 18 :antialias="off"))
+;; (setq doom-font "Fira Code Retina:pixelsize=16:antialias=off")
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -38,13 +39,42 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ uniquify-buffer-name-style 'forward              ; Uniquify buffer names
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      inhibit-compacting-font-caches t            ; When there are lots of glyphs, keep them in memory
+      truncate-string-ellipsis "…")               ; Unicode ellispis are nicer than "...", and also save /precious/ space
+
+(delete-selection-mode 1)
+(global-subword-mode 1)
+;; (display-battery-mode 1)
+;; (display-time-mode 1)
+
+(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+
 (setq avy-all-windows t)
 
+;; (toggle-frame-maximized)
 (setq initial-frame-alist
-'((top . 30) (left . 15) (width . 206) (height . 51)))
+'((top . 30) (left . 15) (width . 180) (height . 48)))
 
 (use-package! paredit
   :hook ((scheme-mode emacs-lisp-mode clojure-mode) . enable-paredit-mode))
+
+(after! evil (evil-escape-mode nil))
+
+;; Temp fix, https://github.com/hlissner/doom-emacs/issues/2860
+(after! dtrt-indent
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-tsx-mode typescript-mode javascript typescript-indent-level)))
 
 ;; (use-package! aggressive-indent
 ;;   :hook
@@ -95,10 +125,38 @@
        :map ivy-minibuffer-map
        "C-d" #'ivy-switch-buffer-kill))
 
+(map! :leader
+      :desc "Switch to last buffer" "TAB"    #'evil-switch-to-windows-last-buffer
+      ;;; <leader> TAB --- workspace
+      (:when (featurep! :ui workspaces)
+       (:prefix-map ("`" . "workspace")
+        :desc "Display tab bar"           "`" #'+workspace/display
+        :desc "Switch workspace"          "."   #'+workspace/switch-to
+        :desc "Switch to last workspace"  "TAB"   #'+workspace/other
+        :desc "New workspace"             "n"   #'+workspace/new
+        :desc "Load workspace from file"  "l"   #'+workspace/load
+        :desc "Save workspace to file"    "s"   #'+workspace/save
+        :desc "Delete session"            "x"   #'+workspace/kill-session
+        :desc "Delete this workspace"     "d"   #'+workspace/delete
+        :desc "Rename workspace"          "r"   #'+workspace/rename
+        :desc "Restore last session"      "R"   #'+workspace/restore-last-session
+        :desc "Next workspace"            "]"   #'+workspace/switch-right
+        :desc "Previous workspace"        "["   #'+workspace/switch-left
+        :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
+        :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
+        :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
+        :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
+        :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
+        :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
+        :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
+        :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
+        :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
+        :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
+      )
+
 (after! cider
   (setq cider-repl-pop-to-buffer-on-connect nil)
   (set-popup-rule! "^\\*cider*" :size 0.45 :side 'right :select t :quit nil)
-
   ;; (setq clojure-indent-style 'align-arguments)
   ;; (setq clojure-align-forms-automatically nil)
   )
@@ -107,6 +165,7 @@
 (set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
 (set-popup-rule! "^\\*info*" :size 0.7 :side 'bottom :select t :quit t)
 (set-popup-rule! "^\\*Flycheck*" :size 0.3 :side 'bottom :select t :quit t)
+
 
 (+global-word-wrap-mode +1)
 
