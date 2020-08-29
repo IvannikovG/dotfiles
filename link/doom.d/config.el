@@ -65,7 +65,7 @@
 
 ;; (toggle-frame-maximized)
 (setq initial-frame-alist
-'((top . 30) (left . 15) (width . 180) (height . 48)))
+'((top . 30) (left . 15) (width . 140) (height . 36)))
 
 (use-package! paredit
   :hook ((scheme-mode emacs-lisp-mode clojure-mode) . enable-paredit-mode))
@@ -125,34 +125,34 @@
        :map ivy-minibuffer-map
        "C-d" #'ivy-switch-buffer-kill))
 
-(map! :leader
-      :desc "Switch to last buffer" "TAB"    #'evil-switch-to-windows-last-buffer
-      ;;; <leader> TAB --- workspace
-      (:when (featurep! :ui workspaces)
-       (:prefix-map ("`" . "workspace")
-        :desc "Display tab bar"           "`" #'+workspace/display
-        :desc "Switch workspace"          "."   #'+workspace/switch-to
-        :desc "Switch to last workspace"  "TAB"   #'+workspace/other
-        :desc "New workspace"             "n"   #'+workspace/new
-        :desc "Load workspace from file"  "l"   #'+workspace/load
-        :desc "Save workspace to file"    "s"   #'+workspace/save
-        :desc "Delete session"            "x"   #'+workspace/kill-session
-        :desc "Delete this workspace"     "d"   #'+workspace/delete
-        :desc "Rename workspace"          "r"   #'+workspace/rename
-        :desc "Restore last session"      "R"   #'+workspace/restore-last-session
-        :desc "Next workspace"            "]"   #'+workspace/switch-right
-        :desc "Previous workspace"        "["   #'+workspace/switch-left
-        :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
-        :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
-        :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
-        :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
-        :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
-        :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
-        :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
-        :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
-        :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
-        :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
-      )
+;; (map! :leader
+;;       :desc "Switch to last buffer" "TAB"    #'evil-switch-to-windows-last-buffer
+;;       ;;; <leader> TAB --- workspace
+;;       (:when (featurep! :ui workspaces)
+;;        (:prefix-map ("`" . "workspace")
+;;         :desc "Display tab bar"           "`" #'+workspace/display
+;;         :desc "Switch workspace"          "."   #'+workspace/switch-to
+;;         :desc "Switch to last workspace"  "TAB"   #'+workspace/other
+;;         :desc "New workspace"             "n"   #'+workspace/new
+;;         :desc "Load workspace from file"  "l"   #'+workspace/load
+;;         :desc "Save workspace to file"    "s"   #'+workspace/save
+;;         :desc "Delete session"            "x"   #'+workspace/kill-session
+;;         :desc "Delete this workspace"     "d"   #'+workspace/delete
+;;         :desc "Rename workspace"          "r"   #'+workspace/rename
+;;         :desc "Restore last session"      "R"   #'+workspace/restore-last-session
+;;         :desc "Next workspace"            "]"   #'+workspace/switch-right
+;;         :desc "Previous workspace"        "["   #'+workspace/switch-left
+;;         :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
+;;         :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
+;;         :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
+;;         :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
+;;         :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
+;;         :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
+;;         :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
+;;         :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
+;;         :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
+;;         :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
+;;       )
 
 (after! cider
   (setq cider-repl-pop-to-buffer-on-connect nil)
@@ -164,6 +164,7 @@
 
 (set-popup-rule! "^\\*help*" :size 0.4 :side 'bottom :select t :quit t)
 (set-popup-rule! "^\\*info*" :size 0.7 :side 'bottom :select t :quit t)
+(set-popup-rule! "^\\*SQL*" :size 0.5 :side 'right :select nil :quit nil)
 (set-popup-rule! "^\\*Flycheck*" :size 0.3 :side 'bottom :select t :quit t)
 
 
@@ -185,6 +186,10 @@
 
 (define-key evil-normal-state-map "x" 'delete-forward-char)     ; delete to the black hole
 (define-key evil-normal-state-map "X" 'delete-backward-char)
+
+(setq
+ projectile-project-search-path '("~/projects"))
+
 
 ;; here are some additional functions/macros that could help you configure doom:
 ;;
@@ -250,3 +255,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(message "Hello World")
+(column-number-mode)
+(visual-line-mode)
+(global-hl-line-mode)
+(find-file "~/todo.org")
