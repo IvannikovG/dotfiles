@@ -9,7 +9,7 @@
 (setq user-full-name "mPut"
       user-mail-address "putintsev@gmail.com")
 (add-load-path! "vendor/")
-(require 'auto-dark-emacs)
+;; (require 'auto-dark-emacs)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -107,7 +107,7 @@
          "p" #'cider-inspector-pop)))
       (:leader
        (:map (clojure-mode-map clojurescript-mode-map emacs-lisp-mode-map)
-        (:prefix ("l" . "lisp")
+        (:prefix ("k" . "lisp")
          "j" #'paredit-join-sexps
          "c" #'paredit-split-sexp
          "s" #'paredit-splice-sexp
@@ -120,7 +120,8 @@
          "w" #'paredit-wrap-sexp
          "[" #'paredit-wrap-square
          "'" #'paredit-meta-doublequote
-         "{" #'paredit-wrap-curly)))
+         "{" #'paredit-wrap-curly
+         "y" #'sp-copy-sexp)))
       (:after ivy
        :map ivy-minibuffer-map
        "C-d" #'ivy-switch-buffer-kill))
