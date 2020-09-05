@@ -9,7 +9,16 @@
 (setq user-full-name "mPut"
       user-mail-address "putintsev@gmail.com")
 (add-load-path! "vendor/")
-;; (require 'auto-dark-emacs)
+
+(:if IS-MAC
+ (require 'auto-dark-emacs)
+ )
+
+
+;; Copy text from emacs into xterm, hterm, trough screen and tmux, with support for graphical displays and multi-byte characters
+;; https://gist.github.com/AlexCharlton/cc82001c407786f7c1f7
+(require 'osc52e)
+(osc52-set-cut-function)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
