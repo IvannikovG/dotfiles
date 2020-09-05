@@ -17,7 +17,9 @@
 (if (not IS-MAC)
     (progn
       (require 'osc52e)
-      (osc52-set-cut-function)))
+      (osc52-set-cut-function)
+      (require 'auto-dark-emacs-on-file)
+      ))
 
 
 ;; Copy text from emacs into xterm, hterm, trough screen and tmux, with support for graphical displays and multi-byte characters
