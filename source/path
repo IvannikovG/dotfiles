@@ -25,10 +25,10 @@ if [[  `uname` == 'Darwin' ]]; then
     # Java 14
     export JAVA_HOME=$JAVA_HOME_14
 else
-    export PATH=$(brew --prefix)/bin:$PATH
-    export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-    yandex-disk start
+    # export PATH=$(brew --prefix)/bin:$PATH
+    # export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+    # yandex-disk start
     source <(kubectl completion bash)
 fi
 
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH"
