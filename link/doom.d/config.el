@@ -10,9 +10,8 @@
       user-mail-address "putintsev@gmail.com")
 (add-load-path! "vendor/")
 
-(:if IS-MAC
- (require 'auto-dark-emacs)
- )
+(if IS-MAC
+ (require 'auto-dark-emacs))
 
 
 ;; Copy text from emacs into xterm, hterm, trough screen and tmux, with support for graphical displays and multi-byte characters
