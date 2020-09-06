@@ -23,4 +23,8 @@ dotfiles_setup:
 	ln -sf $(PWD)/link/common/inputrc ~/.inputrc
 	ln -sf $(PWD)/link/common/tmux.conf ~/.tmux.conf
 
+mac_setup:
+	ln -sf  $(PWD)/link/macos/iterm/Scripts    ~/Library/Application\ Support/iTerm2/
+
+
 # setup: nvim_setup dotfiles_setup
