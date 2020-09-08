@@ -752,9 +752,11 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSColorPanelMode</key>
-	<string>6</string>
+	<string>3</string>
 	<key>NSColorPickerPreferredRGBEntryMode</key>
 	<integer>2</integer>
+	<key>NSColorPickerSlidersDefaults</key>
+	<string>3</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/link/macos/iterm</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
@@ -779,11 +781,6 @@
 	<array>
 		<string>0.000000, 0.000000, 228.000000, 258.000000, NO, NO</string>
 		<string>0.000000, 259.000000, 228.000000, 48.000000, NO, NO</string>
-	</array>
-	<key>NSSplitView Subview Frames iTermScriptInspectorSplitView</key>
-	<array>
-		<string>0.000000, 0.000000, 960.000000, 400.000000, NO, NO</string>
-		<string>0.000000, 401.000000, 960.000000, 110.000000, NO, NO</string>
 	</array>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
 	<data>
@@ -814,21 +811,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>322 140 228 275 0 0 1440 877 </string>
+	<string>206 232 228 275 0 0 1680 1027 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>320 321 799 448 0 0 1440 877 </string>
-	<key>NSWindow Frame ProfilesPanel</key>
-	<string>205 457 735 382 0 0 1440 900 </string>
+	<string>162 422 799 448 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
-	<string>412 527 616 174 0 0 1440 877 </string>
+	<string>652 752 616 174 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 588 620 392 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>11 50 1504 948 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>5 101 1675 909 0 0 1680 1027 </string>
-	<key>NSWindow Frame iTermScriptConsole</key>
-	<string>267 127 907 629 0 0 1440 900 </string>
 	<key>NeverWarnAboutSpaces</key>
 	<true/>
 	<key>NeverWarnAboutSpaces_selection</key>
@@ -1857,7 +1850,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.01</real>
+			<real>0.94999999999999996</real>
 			<key>Visual Bell</key>
 			<false/>
 			<key>Window Type</key>
@@ -1882,14 +1875,14 @@
 	<true/>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>all-the-icons</string>
+		<string>Iosevka</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1440, 900}}</string>
+		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{349, 831}</string>
+		<string>{169, 812}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
@@ -1900,7 +1893,7 @@
 	<key>NoSyncLastOSVersion</key>
 	<string>Version 10.15.6 (Build 19G73)</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>90</integer>
+	<integer>84</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1922,7 +1915,7 @@
 	<key>NoSyncPersistentRateLimitedUpdates</key>
 	<dict>
 		<key>CheckForUpdatedPythonRuntime</key>
-		<real>621206162.88647294</real>
+		<real>621280462.62407196</real>
 	</dict>
 	<key>NoSyncRecordedVariables</key>
 	<dict>
@@ -2794,7 +2787,7 @@
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>PromptOnQuitEvenIfThereAreNoWindows</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -2810,7 +2803,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-09-05T21:24:59Z</date>
+	<date>2020-09-07T17:54:43Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
