@@ -10,11 +10,11 @@
       user-mail-address "putintsev@gmail.com")
 (add-load-path! "vendor/")
 
-(if IS-MAC
+(if (display-graphic-p)
  (require 'auto-dark-emacs))
 
 
-(if (not IS-MAC)
+(if (not (display-graphic-p))
     (progn
       (require 'osc52e)
       (osc52-set-cut-function)

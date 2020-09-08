@@ -91,10 +91,12 @@ async def set_dark_colors(connection, dark_mode):
     print("Enable dark mode? {}".format(dark_mode))
     if (dark_mode):
         print("Setting dark mode by ssh!")
-        os.system("ssh -t mput@babudan.ru 'touch .darktheme'")
+        os.system("touch ~/.theme_dark && rm -f ~/.theme_light")
+        os.system("ssh -t mput@babudan.ru 'touch ~/.theme_dark && rm -f ~/.theme_light' &")
     else:
         print("Setting light mode by ssh!")
-        os.system("ssh -t mput@babudan.ru 'rm -f .darktheme'")
+        os.system("touch ~/.theme_light && rm -f ~/.theme_dark")
+        os.system("ssh -t mput@babudan.ru 'touch ~/.theme_light && rm -f ~/.theme_dark' &")
 
     partials = (await iterm2.PartialProfile.async_query(connection))
     all_colors = get_current_colors(partials, dark_mode)

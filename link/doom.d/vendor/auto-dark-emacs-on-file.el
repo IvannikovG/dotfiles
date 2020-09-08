@@ -76,13 +76,15 @@ end tell")))
 (defun auto-dark-emacs/check-and-set-dark-mode ()
   "Sets the theme according to Mac OS's dark mode state. In order to prevent flickering, we only set the theme if we haven't already set the theme for the current dark mode state."
   ;; Get's MacOS dark mode state
-  (let ((is-dark-mode (file-exists-p "~/.darktheme")))
+  (let ((is-dark-mode (file-exists-p "~/.theme_dark"))
+        (is-light-mode (file-exists-p "~/.theme_light")))
     (if (not (eq is-dark-mode auto-dark-emacs/last-dark-mode-state))
         (progn
           (setq auto-dark-emacs/last-dark-mode-state is-dark-mode)
           (if is-dark-mode
-              (setq doom-theme auto-dark-emacs/dark-theme)
-            (setq doom-theme auto-dark-emacs/light-theme))
+              (setq doom-theme auto-dark-emacs/dark-theme))
+          (if is-light-mode
+              (setq doom-theme auto-dark-emacs/light-theme))
           (doom/reload-theme)
           ))))
 
