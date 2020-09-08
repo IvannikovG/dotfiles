@@ -7,9 +7,9 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#FFFBEA" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#556b72"])
+ '(auth-source-save-behavior nil)
  '(custom-safe-themes
-   (quote
-    ("990e24b406787568c592db2b853aa65ecc2dcd08146c0d22293259d400174e37" "37144b437478e4c235824f0e94afa740ee2c7d16952e69ac3c5ed4352209eefb" "0cb1b0ea66b145ad9b9e34c850ea8e842c4c4c83abe04e37455a1ef4cc5b8791" "5d09b4ad5649fea40249dd937eaaa8f8a229db1cec9a1a0ef0de3ccf63523014" default)))
+   '("990e24b406787568c592db2b853aa65ecc2dcd08146c0d22293259d400174e37" "37144b437478e4c235824f0e94afa740ee2c7d16952e69ac3c5ed4352209eefb" "0cb1b0ea66b145ad9b9e34c850ea8e842c4c4c83abe04e37455a1ef4cc5b8791" "5d09b4ad5649fea40249dd937eaaa8f8a229db1cec9a1a0ef0de3ccf63523014" default))
  '(fci-rule-color "#D6D6D6")
  '(jdee-db-active-breakpoint-face-colors (cons "#FFFBF0" "#268bd2"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#FFFBF0" "#859900"))
@@ -19,13 +19,11 @@
  '(rustic-ansi-faces
    ["#FDF6E3" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#556b72"])
  '(sql-connection-alist
-   (quote
-    (("local-mawd"
-      (sql-product
-       (quote postgres))
+   '(("local-mawd"
+      (sql-product 'postgres)
       (sql-user "postgres")
       (sql-database "mawd")
-      (sql-server "localhost")))))
+      (sql-server "localhost"))))
  '(vc-annotate-background "#FDF6E3")
  '(vc-annotate-color-map
    (list

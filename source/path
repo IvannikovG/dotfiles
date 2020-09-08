@@ -25,6 +25,11 @@ if [[  `uname` == 'Darwin' ]]; then
     # Java 14
     export JAVA_HOME=$JAVA_HOME_14
 else
+    export JAVA_HOME_8=/usr/lib/jvm/java-8-openjdk-amd64
+    export JAVA_HOME_14=/usr/lib/jvm/java-14-openjdk-amd64
+
+    export JAVA_HOME=$JAVA_HOME_14
+
     # export PATH=$(brew --prefix)/bin:$PATH
     # export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
     # yandex-disk start
