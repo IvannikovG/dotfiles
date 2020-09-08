@@ -141,34 +141,11 @@
        :map ivy-minibuffer-map
        "C-d" #'ivy-switch-buffer-kill))
 
-;; (map! :leader
-;;       :desc "Switch to last buffer" "TAB"    #'evil-switch-to-windows-last-buffer
-;;       ;;; <leader> TAB --- workspace
-;;       (:when (featurep! :ui workspaces)
-;;        (:prefix-map ("`" . "workspace")
-;;         :desc "Display tab bar"           "`" #'+workspace/display
-;;         :desc "Switch workspace"          "."   #'+workspace/switch-to
-;;         :desc "Switch to last workspace"  "TAB"   #'+workspace/other
-;;         :desc "New workspace"             "n"   #'+workspace/new
-;;         :desc "Load workspace from file"  "l"   #'+workspace/load
-;;         :desc "Save workspace to file"    "s"   #'+workspace/save
-;;         :desc "Delete session"            "x"   #'+workspace/kill-session
-;;         :desc "Delete this workspace"     "d"   #'+workspace/delete
-;;         :desc "Rename workspace"          "r"   #'+workspace/rename
-;;         :desc "Restore last session"      "R"   #'+workspace/restore-last-session
-;;         :desc "Next workspace"            "]"   #'+workspace/switch-right
-;;         :desc "Previous workspace"        "["   #'+workspace/switch-left
-;;         :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
-;;         :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
-;;         :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
-;;         :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
-;;         :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
-;;         :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
-;;         :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
-;;         :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
-;;         :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
-;;         :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
-;;       )
+(map! :leader
+      ;;; <leader> p --- project
+      (:prefix-map ("p" . "project")
+       :desc "Add new project"              "A" #'projectile-add-known-project
+       :desc "implementation <-> test"      "a" #'projectile-toggle-between-implementation-and-test))
 
 (after! cider
   (setq cider-repl-pop-to-buffer-on-connect nil)
