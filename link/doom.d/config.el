@@ -8,8 +8,8 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "mPut"
       user-mail-address "putintsev@gmail.com")
-(add-load-path! "vendor/")
 
+(add-load-path! "vendor/")
 (if (display-graphic-p)
  (require 'auto-dark-emacs))
 
@@ -20,6 +20,10 @@
       (osc52-set-cut-function)
       (require 'auto-dark-emacs-on-file)
       ))
+
+
+(load "psql")
+(define-key evil-normal-state-map (kbd "RET") 'run-sql)
 
 
 ;; Copy text from emacs into xterm, hterm, trough screen and tmux, with support for graphical displays and multi-byte characters
@@ -125,12 +129,11 @@
         (:prefix ("k" . "lisp")
          "j" #'paredit-join-sexps
          "c" #'paredit-split-sexp
-         "s" #'paredit-splice-sexp
          "d" #'paredit-kill
          "<" #'paredit-backward-slurp-sexp
          ">" #'paredit-backward-barf-sexp
-         "." #'paredit-forward-slurp-sexp
-         "," #'paredit-forward-barf-sexp
+         "s" #'paredit-forward-slurp-sexp
+         "b" #'paredit-forward-barf-sexp
          "r" #'paredit-raise-sexp
          "w" #'paredit-wrap-sexp
          "[" #'paredit-wrap-square
@@ -161,7 +164,7 @@
 (set-popup-rule! "^\\*Flycheck*" :size 0.3 :side 'bottom :select t :quit t)
 
 
-(+global-word-wrap-mode +1)
+(+global-word-wrap-mode 0)
 
 (after! lsp-mode
   (setq lsp-enable-symbol-highlighting nil))
@@ -242,6 +245,18 @@
     (cons 340 "#D6D6D6")
     (cons 360 "#D6D6D6")))
  '(vc-annotate-very-old-color nil))
+
+
+
+(after! js2-mode
+  (setq-default js2-basic-offset 2)
+  ;; (when (executable-find "eslint")
+  ;;   (flycheck-select-checker 'javascript-eslint))
+  )
+
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -249,8 +264,8 @@
  ;; If there is more than one, they won't work right.
  )
 
-(message "Hello World")
-(column-number-mode)
-(visual-line-mode)
-(global-hl-line-mode)
-(find-file "~/todo.org")
+;; (column-number-mode)
+;; (visual-line-mode)
+;; (global-hl-line-mode)
+
+;; (find-file "~/todo.org")
