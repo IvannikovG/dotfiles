@@ -1,11 +1,4 @@
 ;;; ../dotfiles/link/doom.d/vendor/psql.el -*- lexical-binding: t; -*-
----- db: psql "postgresql://postgres:postgres@localhost:5432/mawd"
-
-(equal "psql" (car (split-string (db-cfg))))
-
-(equal "mysql" (car (split-string (db-cfg))))
-
-
 (defun db-cfg ()
   (interactive)
   (save-excursion

@@ -10,6 +10,7 @@
       user-mail-address "putintsev@gmail.com")
 
 (add-load-path! "vendor/")
+
 (if (display-graphic-p)
  (require 'auto-dark-emacs))
 
@@ -18,11 +19,9 @@
     (progn
       (require 'osc52e)
       (osc52-set-cut-function)
-      (require 'auto-dark-emacs-on-file)
-      ))
+      (require 'auto-dark-emacs-on-file)))
 
-
-(load "psql")
+(require 'psql)
 (define-key evil-normal-state-map (kbd "RET") 'run-sql)
 
 
