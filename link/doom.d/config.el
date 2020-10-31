@@ -186,6 +186,7 @@
  projectile-project-search-path '("~/projects"))
 
 
+
 ;; here are some additional functions/macros that could help you configure doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
